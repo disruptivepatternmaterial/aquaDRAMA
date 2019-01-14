@@ -1,8 +1,8 @@
-
+//NodeMCU 12-E
 
 // Include the correct display library
 // For a connection via I2C using Wire include
-#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
+#include <Wire.h>
 #include "OLEDDisplayUi.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
@@ -20,16 +20,18 @@
 SSD1306Wire  display(0x3c, D1, D2);
 // SH1106Wire display(0x3c, D3, D5);
 
-OLEDDisplayUi ui     ( &display );
+OLEDDisplayUi ui  ( &display );
 
 WiFiClientSecure client;
 
-float out_temp;
-float out_pH;
-float out_specificgravity;
-int out_chiller;
-long out_millis;
+int val_chiller ; // 0
+long val_millis ; // 94026031
+float val_pH ; // 8.208
+float val_specificgravity ; // 1.024
+float val_temp ; // 78.125
 String chiller_text;
+
+
 // User defined variables for Exosite reporting period and averaging samples
 #define REPORT_TIMEOUT 300000        //milliseconds period for reporting to Exosite.com
 #define SENSOR_READ_TIMEOUT  300000   //milliseconds period for reading sensors in loop
@@ -52,7 +54,7 @@ void drawFrame2(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
   // Besides the default fonts there will be a program to convert TrueType fonts into this format
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->setFont(ArialMT_Plain_24);
-  String toshow = "Temp:" + String(out_temp, 2) + "F";
+  String toshow = "Temp:" + String(val_temp, 2) + "F";
   display->drawString(0 + x, 18 + y, toshow);
 }
 
@@ -61,7 +63,7 @@ void drawFrame3(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
   // Besides the default fonts there will be a program to convert TrueType fonts into this format
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->setFont(ArialMT_Plain_24);
-  String toshow = "pH:" + String(out_pH) + "";
+  String toshow = "pH:" + String(val_pH) + "";
   display->drawString(0 + x, 18 + y, toshow);
 
 }
@@ -71,7 +73,7 @@ void drawFrame4(OLEDDisplay *display, OLEDDisplayUiState* state, int16_t x, int1
   // Besides the default fonts there will be a program to convert TrueType fonts into this format
   display->setTextAlignment(TEXT_ALIGN_LEFT);
   display->setFont(ArialMT_Plain_24);
-  String toshow = "SG:" + String(out_specificgravity, 3);
+  String toshow = "SG:" + String(val_specificgravity, 3);
   display->drawString(0 + x, 18 + y, toshow);
 
 }
@@ -116,7 +118,6 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  Serial.println("Setup is Done");
 
 
   // The ESP is capable of rendering 60fps in 80Mhz mode
@@ -150,6 +151,7 @@ void setup() {
 
   display.flipScreenVertically();
 
+  Serial.println("Setup is Done");
 }
 
 int startcount = 1;
@@ -164,36 +166,51 @@ void loop() {
       HTTPClient http;  //Object of class HTTPClient
       //int beginCode = http.begin("http://scooterlabs.com/echo");
       //CF DD 71 A1 BF 01 76 98 A9 21 84 7A 5D 41 38 A0 44 F4 29 3E A5 5C 0B D6 86 4C 76 BA 0B 05 0F 39
-      //
-      int beginCode = http.begin("https://api.thinger.io/v2/users/ntableman/devices/aquaDRAMA/tankdata", "C3 90 0E 8B CB 2D 7A 32 1B 55 5C 00 FA 7B 39 5E 53 BC D2 8F");
-      // http.addHeader("Content-Type", "application/json");
-      http.addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhcXVhRHJhbWFEaXNwbGF5IiwidXNyIjoibnRhYmxlbWFuIn0.DMMboKYppQFO3x8KOXa5PebfnontqyyTc49jsGAIdsI", true, true);
-      http.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15");
-      Serial.println("begin code: " + beginCode);
-      int httpCode = http.GET();
-      Serial.println("http code: " + httpCode);
-
+      //, "C3 90 0E 8B CB 2D 7A 32 1B 55 5C 00 FA 7B 39 5E 53 BC D2 8F"
+      // need to get these signatures from the source site
+      //https://api.thinger.io/v1/users/ntableman/buckets/aquaDramaData/data?items=1&max_ts=0&sort=desc&authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhcXVhRHJhbWFEaXNwbGF5IiwidXNyIjoibnRhYmxlbWFuIn0.DMMboKYppQFO3x8KOXa5PebfnontqyyTc49jsGAIdsI", "C3 90 0E 8B CB 2D 7A 32 1B 55 5C 00 FA 7B 39 5E 53 BC D2 8F"
+      http.begin("https://api.thinger.io/v1/users/ntableman/buckets/aquaDramaData/data?items=1&max_ts=0&sort=desc&authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhcXVhRHJhbWFEaXNwbGF5IiwidXNyIjoibnRhYmxlbWFuIn0.DMMboKYppQFO3x8KOXa5PebfnontqyyTc49jsGAIdsI", "B8 DE 87 81 84 7D F0 83 71 95 6E E6 E2 97 50 54 C6 78 AF A3");
+      http.addHeader("Content-Type", "application/json");
+      //http.addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhcXVhRHJhbWFEaXNwbGF5IiwidXNyIjoibnRhYmxlbWFuIn0.DMMboKYppQFO3x8KOXa5PebfnontqyyTc49jsGAIdsI", true, true);
+      //http.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Safari/605.1.15");
+      delay(250);
+      size_t httpCode = http.GET();
+      delay(250);
+      Serial.println("---------------------------------");
+      Serial.println(httpCode);
+      Serial.println("---------------------------------");
+      Serial.println("done getting");
 
       //Check the returning code
       if (httpCode > 0) {
         // Get the request response payload
         String payload = http.getString();
         Serial.println(payload);
-        const size_t bufferSize = JSON_OBJECT_SIZE(1) + JSON_OBJECT_SIZE(5) + 90;
-        DynamicJsonBuffer jsonBuffer(bufferSize);
-        JsonObject& root = jsonBuffer.parseObject(payload);
+        const size_t capacity = JSON_ARRAY_SIZE(1) + JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(10) + 200;
+        DynamicJsonBuffer jsonBuffer(capacity);
 
-        JsonObject& out = root["out"];
-        out_temp = out["temp"]; // 78.575
-        out_pH = out["pH"]; // 8.177
-        out_specificgravity = out["specificgravity"]; // 1.027
-        out_chiller = out["chiller"]; // 0
-        out_millis = out["millis"]; // 406617817
-        if ( out_chiller == 0) {
+        JsonArray& root = jsonBuffer.parseArray(payload);
+
+        long root_0_ts = root[0]["ts"];
+
+        JsonObject& root_0_val = root[0]["val"];
+        val_chiller = root_0_val["chiller"];
+        val_millis = root_0_val["millis"];
+        val_pH = root_0_val["pH"];
+        const char* root_0_val_phCalibCode = root_0_val["phCalibCode"];
+        const char* root_0_val_phProbeResponse = root_0_val["phProbeResponse"];
+        const char* root_0_val_sgCalibCode = root_0_val["sgCalibCode"];
+        const char* root_0_val_sgProbeResponse = root_0_val["sgProbeResponse"];
+        val_specificgravity = root_0_val["specificgravity"];
+        val_temp = root_0_val["temp"];
+        int root_0_val_thingerfixedsg = root_0_val["thingerfixedsg"];
+
+        if ( val_chiller == 0) {
           chiller_text = "off";
         } else {
           chiller_text = "on";
         }
+        Serial.println(val_temp);
       }
       http.end();   //Close connection
       pollDataTime = millis(); //reset report period timer
