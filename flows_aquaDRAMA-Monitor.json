@@ -28,13 +28,6 @@
         "info": ""
     },
     {
-        "id": "3ca51462.4d812c",
-        "type": "tab",
-        "label": "Systems Control-MQTT",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "67dc5066.bfbd68",
         "type": "tab",
         "label": "Network Management",
@@ -49,10 +42,17 @@
         "info": ""
     },
     {
+        "id": "3ca51462.4d812c",
+        "type": "tab",
+        "label": "Systems Control-MQTT",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "5ef48879.68e9d",
         "type": "tab",
         "label": "System Control-REST",
-        "disabled": true,
+        "disabled": false,
         "info": ""
     },
     {
@@ -282,7 +282,7 @@
         "name": "8PHR-Homebridge.iot.8ph.lan",
         "broker": "8PHR-Homebridge.iot.8ph.lan",
         "port": "1883",
-        "clientid": "",
+        "clientid": "aquaDRAMA-node-red",
         "usetls": false,
         "compatmode": false,
         "keepalive": "60",
@@ -301,15 +301,6 @@
         "willPayload": ""
     },
     {
-        "id": "c6263ab5.412f08",
-        "type": "ui_tab",
-        "z": "",
-        "name": "Home",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "86275d52.1eb418",
         "type": "ui_group",
         "z": "",
@@ -320,21 +311,30 @@
         "collapse": false
     },
     {
-        "id": "80431470.7faf8",
-        "type": "ui_group",
-        "z": "",
-        "name": "Test Messages",
-        "tab": "51231bc4.7262dc",
-        "disp": true,
-        "width": "9",
-        "collapse": false
-    },
-    {
         "id": "51231bc4.7262dc",
         "type": "ui_tab",
         "z": "",
         "name": "Demo",
         "icon": "dashboard"
+    },
+    {
+        "id": "5d2b17a1.943d08",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Testing",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "68c5b599.631364",
+        "type": "ui_group",
+        "z": "",
+        "name": "New Control",
+        "tab": "5d2b17a1.943d08",
+        "disp": false,
+        "width": "8",
+        "collapse": false
     },
     {
         "id": "f589733a.8cc13",
@@ -590,7 +590,7 @@
         "url": "http://api.thinger.io/v1/users/ntableman/buckets/aquaDRAMA8PHR/data?{{{parms}}}",
         "tls": "",
         "proxy": "",
-        "authType": "",
+        "authType": "bearer",
         "x": 440,
         "y": 520,
         "wires": [
@@ -2264,7 +2264,7 @@
         "url": "http://api.thinger.io/v1/users/ntableman/buckets/aquaDRAMA8PHR/data?{{{parms}}}",
         "tls": "",
         "proxy": "",
-        "authType": "",
+        "authType": "bearer",
         "x": 460,
         "y": 620,
         "wires": [
@@ -2540,7 +2540,7 @@
         "url": "http://api.thinger.io/v1/users/ntableman/buckets/aquaDRAMA8PHR/data?{{{parms}}}",
         "tls": "",
         "proxy": "",
-        "authType": "",
+        "authType": "bearer",
         "x": 460,
         "y": 720,
         "wires": [
@@ -2658,7 +2658,7 @@
         "url": "http://api.thinger.io/v1/users/ntableman/buckets/aquaDRAMA8PHR/data?{{{parms}}}",
         "tls": "",
         "proxy": "",
-        "authType": "",
+        "authType": "bearer",
         "x": 460,
         "y": 840,
         "wires": [
@@ -3366,28 +3366,26 @@
         "name": "",
         "label": "Sump Filler 2",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 18,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/sump-filler/set",
+        "topic": "0",
         "style": "",
-        "onvalue": "1",
+        "onvalue": "true",
         "onvalueType": "str",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "0",
+        "offvalue": "false",
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 550,
-        "y": 40,
+        "x": 570,
+        "y": 140,
         "wires": [
-            [
-                "7e3251b1.d91de8"
-            ]
+            []
         ],
         "info": "8PHR/aquaDRAMA/device/sump"
     },
@@ -3398,13 +3396,13 @@
         "name": "",
         "label": "Calcium 2",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 4,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/calcium/set",
+        "topic": "2",
         "style": "",
         "onvalue": "true",
         "onvalueType": "str",
@@ -3414,11 +3412,11 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 420,
-        "y": 580,
+        "x": 500,
+        "y": 600,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3427,15 +3425,15 @@
         "type": "ui_switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "label": "Water Changer 2",
+        "label": "Water Changer",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 6,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/water-swap/set",
+        "topic": "4",
         "style": "",
         "onvalue": "true",
         "onvalueType": "str",
@@ -3445,11 +3443,11 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 450,
-        "y": 360,
+        "x": 520,
+        "y": 380,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3458,29 +3456,29 @@
         "type": "ui_switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "label": "Kalk/Wiper 2",
+        "label": "Kalk/Wiper",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 8,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
+        "topic": "1",
         "style": "",
-        "onvalue": "1",
+        "onvalue": "true",
         "onvalueType": "str",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "0",
+        "offvalue": "false",
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 430,
-        "y": 260,
+        "x": 510,
+        "y": 280,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3557,8 +3555,8 @@
         "type": "timerswitch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
-        "offtopic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
+        "ontopic": "kalk-wiper",
+        "offtopic": "kalk-wiper",
         "onpayload": "1",
         "offpayload": "0",
         "disabled": false,
@@ -3600,8 +3598,8 @@
                 "valid": true
             }
         ],
-        "x": 250,
-        "y": 300,
+        "x": 330,
+        "y": 280,
         "wires": [
             [
                 "d4c40f7c.f76888"
@@ -3615,27 +3613,27 @@
         "name": "",
         "label": "Sump Light 2",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 10,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/sump-light/set",
+        "topic": "3",
         "style": "",
-        "onvalue": "1",
+        "onvalue": "true",
         "onvalueType": "str",
         "onicon": "",
         "oncolor": "",
-        "offvalue": "0",
+        "offvalue": "false",
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 440,
-        "y": 480,
+        "x": 520,
+        "y": 500,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3646,13 +3644,13 @@
         "name": "",
         "label": "Skimmer 2",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 12,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/skimmer/set",
+        "topic": "5",
         "style": "",
         "onvalue": "true",
         "onvalueType": "str",
@@ -3662,11 +3660,11 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 430,
-        "y": 700,
+        "x": 510,
+        "y": 720,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3691,8 +3689,8 @@
                 "valid": true
             }
         ],
-        "x": 250,
-        "y": 400,
+        "x": 330,
+        "y": 380,
         "wires": [
             [
                 "e78ee59e.638fd"
@@ -3720,8 +3718,8 @@
                 "valid": true
             }
         ],
-        "x": 250,
-        "y": 520,
+        "x": 330,
+        "y": 500,
         "wires": [
             [
                 "e0deec22.e2d318"
@@ -3776,8 +3774,8 @@
                 "valid": true
             }
         ],
-        "x": 250,
-        "y": 620,
+        "x": 330,
+        "y": 600,
         "wires": [
             [
                 "2449d867.b1dc18"
@@ -3805,8 +3803,8 @@
                 "valid": true
             }
         ],
-        "x": 250,
-        "y": 740,
+        "x": 330,
+        "y": 720,
         "wires": [
             [
                 "6f24f5a5.4f5c6c"
@@ -3818,15 +3816,15 @@
         "type": "ui_switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "label": "Heater 2",
+        "label": "Phos-UV-Pump",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 14,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/heater/set",
+        "topic": "6",
         "style": "",
         "onvalue": "true",
         "onvalueType": "str",
@@ -3836,11 +3834,11 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 420,
-        "y": 800,
+        "x": 520,
+        "y": 820,
         "wires": [
             [
-                "7e3251b1.d91de8"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -3849,15 +3847,15 @@
         "type": "ui_switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "label": "Chiller 2",
+        "label": "Chiller-Pump",
         "tooltip": "",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 16,
         "width": "4",
         "height": "1",
         "passthru": true,
         "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/chiller/set",
+        "topic": "7",
         "style": "",
         "onvalue": "true",
         "onvalueType": "str",
@@ -3867,275 +3865,11 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 420,
-        "y": 860,
+        "x": 510,
+        "y": 880,
         "wires": [
             [
-                "7e3251b1.d91de8"
-            ]
-        ]
-    },
-    {
-        "id": "13bfccd3.228f73",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "sump-filler",
-        "topic": "8PHR/aquaDRAMA/device/sump-filler",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 120,
-        "y": 40,
-        "wires": [
-            [
-                "afd7232.bfb016"
-            ]
-        ]
-    },
-    {
-        "id": "8fe85eb8.c410c",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "water-swap",
-        "topic": "8PHR/aquaDRAMA/device/water-swap",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 110,
-        "y": 360,
-        "wires": [
-            [
-                "920cf852.b0e8e"
-            ]
-        ]
-    },
-    {
-        "id": "c67dc9d0.69ed9",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "sump-light",
-        "topic": "8PHR/aquaDRAMA/device/sump-light",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 120,
-        "y": 480,
-        "wires": [
-            [
-                "a4f01c02.e6daf"
-            ]
-        ]
-    },
-    {
-        "id": "920cf852.b0e8e",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 360,
-        "wires": [
-            [
-                "e78ee59e.638fd"
-            ]
-        ]
-    },
-    {
-        "id": "a4f01c02.e6daf",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 480,
-        "wires": [
-            [
-                "e0deec22.e2d318"
-            ]
-        ]
-    },
-    {
-        "id": "afd7232.bfb016",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 40,
-        "wires": [
-            [
-                "648c04bd.b9849c"
-            ]
-        ]
-    },
-    {
-        "id": "979f78b7.82b61",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "kalk-wiper",
-        "topic": "8PHR/aquaDRAMA/device/kalk-wiper",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 120,
-        "y": 260,
-        "wires": [
-            [
-                "cb4adb42.7c3eb8"
-            ]
-        ]
-    },
-    {
-        "id": "cb4adb42.7c3eb8",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 260,
-        "wires": [
-            [
-                "d4c40f7c.f76888"
-            ]
-        ]
-    },
-    {
-        "id": "388a9e56.daa0da",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "heater",
-        "topic": "8PHR/aquaDRAMA/device/heater",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 110,
-        "y": 800,
-        "wires": [
-            [
-                "cd9746ee.8ddbe"
-            ]
-        ]
-    },
-    {
-        "id": "cd9746ee.8ddbe",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\n//msg.payload = Boolean(msg.payload);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 800,
-        "wires": [
-            [
-                "99c001a.ee81"
-            ]
-        ]
-    },
-    {
-        "id": "c2c50517.f1da08",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "calcium",
-        "topic": "8PHR/aquaDRAMA/device/calcium",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 110,
-        "y": 580,
-        "wires": [
-            [
-                "fc290250.650b2"
-            ]
-        ]
-    },
-    {
-        "id": "fc290250.650b2",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 580,
-        "wires": [
-            [
-                "2449d867.b1dc18"
-            ]
-        ]
-    },
-    {
-        "id": "b64c2e2a.6b40f8",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "skimmer",
-        "topic": "8PHR/aquaDRAMA/device/skimmer",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 120,
-        "y": 700,
-        "wires": [
-            [
-                "22d276cd.8aeaea"
-            ]
-        ]
-    },
-    {
-        "id": "22d276cd.8aeaea",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 700,
-        "wires": [
-            [
-                "6f24f5a5.4f5c6c"
-            ]
-        ]
-    },
-    {
-        "id": "5104fd3b.7989bc",
-        "type": "mqtt in",
-        "z": "5ef48879.68e9d",
-        "name": "chiller",
-        "topic": "8PHR/aquaDRAMA/device/chiller",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 110,
-        "y": 860,
-        "wires": [
-            [
-                "3df0c6c7.b1e4ca"
-            ]
-        ]
-    },
-    {
-        "id": "3df0c6c7.b1e4ca",
-        "type": "function",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 860,
-        "wires": [
-            [
-                "31aa11a8.770846"
+                "907e52c8.ee0cd"
             ]
         ]
     },
@@ -4147,13 +3881,13 @@
         "op2": "0",
         "op1type": "pay",
         "op2type": "str",
-        "duration": "5",
+        "duration": "15",
         "extend": false,
         "units": "s",
         "reset": "",
         "bytopic": "all",
         "name": "",
-        "x": 340,
+        "x": 350,
         "y": 80,
         "wires": [
             [
@@ -4165,7 +3899,7 @@
         "id": "69b0eb00.872144",
         "type": "ui_text",
         "z": "5ef48879.68e9d",
-        "group": "64f54271.7e742c",
+        "group": "68c5b599.631364",
         "order": 2,
         "width": "8",
         "height": "1",
@@ -4185,12 +3919,12 @@
         "method": "PUT",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://aquaDRAMA-Outlets.iot.8ph.lan/restapi/relay/outlets/{{{topic}}}/state/",
+        "url": "http://192.168.40.148/restapi/relay/outlets/{{{topic}}}/state/",
         "tls": "",
         "proxy": "",
-        "authType": "",
-        "x": 930,
-        "y": 620,
+        "authType": "digest",
+        "x": 870,
+        "y": 280,
         "wires": [
             [
                 "d4cb538a.40aff8"
@@ -4202,7 +3936,7 @@
         "id": "907e52c8.ee0cd",
         "type": "change",
         "z": "5ef48879.68e9d",
-        "name": "",
+        "name": "header",
         "rules": [
             {
                 "t": "set",
@@ -4212,133 +3946,11 @@
                 "tot": "str"
             },
             {
-                "t": "delete",
-                "p": "socketid",
-                "pt": "msg"
-            },
-            {
-                "t": "delete",
-                "p": "_msgid",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1140,
-        "y": 160,
-        "wires": [
-            [
-                "e4f608b4.9d",
-                "e8aa4646.9c6388"
-            ]
-        ]
-    },
-    {
-        "id": "7e3251b1.d91de8",
-        "type": "switch",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/sump-filler/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/kalk-wiper/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/calcium/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/sump-light/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/water-swap/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/skimmer/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/heater/set",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "8PHR/aquaDRAMA/device/chiller/set",
-                "vt": "str"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 8,
-        "x": 710,
-        "y": 140,
-        "wires": [
-            [
-                "efb17bea.7084e8"
-            ],
-            [
-                "7738fe61.dcbc38"
-            ],
-            [
-                "d216356c.6b25c"
-            ],
-            [
-                "f1e54ff.be82b3"
-            ],
-            [
-                "f82d7d21.ab8f4"
-            ],
-            [
-                "37ff58dd.86d56"
-            ],
-            [
-                "338d1f34.40411"
-            ],
-            [
-                "16da50c9.ce5fcf"
-            ]
-        ],
-        "outputLabels": [
-            "sump filler",
-            "wiper",
-            "calcium",
-            "sump light",
-            "water swap",
-            "skimmer",
-            "heater",
-            "chiller"
-        ]
-    },
-    {
-        "id": "16da50c9.ce5fcf",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
                 "t": "set",
-                "p": "topic",
+                "p": "requestTimeout",
                 "pt": "msg",
-                "to": "7",
-                "tot": "str"
+                "to": "5000",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -4346,14 +3958,13 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
-        "y": 320,
+        "x": 810,
+        "y": 480,
         "wires": [
             [
-                "907e52c8.ee0cd"
+                "98409b84.91e33"
             ]
-        ],
-        "info": "0\tSump-Filler\t\t\n1\tWiper-Kalk\t\t\n2\tCalcium\t\t\t\n3\tSump-Light\t\t\n4\tWater-Swap\t\n5\tSkimmer\t\n6\tHeaters\t\t\n7\tChiller\t"
+        ]
     },
     {
         "id": "cd8e563e.4c613",
@@ -4951,195 +4562,6 @@
         ]
     },
     {
-        "id": "338d1f34.40411",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "6",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 280,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "d216356c.6b25c",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 120,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "37ff58dd.86d56",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "5",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 240,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "f1e54ff.be82b3",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "3",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 160,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "f82d7d21.ab8f4",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "4",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 200,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "7738fe61.dcbc38",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 80,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
-        "id": "efb17bea.7084e8",
-        "type": "change",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "0",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 40,
-        "wires": [
-            [
-                "907e52c8.ee0cd"
-            ]
-        ]
-    },
-    {
         "id": "67e1f137.044008",
         "type": "delay",
         "z": "a6dbe4cf.51fb78",
@@ -5389,50 +4811,6 @@
         ]
     },
     {
-        "id": "5fccc84a.8c604",
-        "type": "http request",
-        "z": "5ef48879.68e9d",
-        "name": "Get Status",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://aquaDRAMA-Outlets.iot.8ph.lan/restapi/relay/outlets/{{{topic}}}/state/",
-        "tls": "",
-        "proxy": "",
-        "authType": "",
-        "x": 1130,
-        "y": 620,
-        "wires": [
-            [
-                "d4cb538a.40aff8"
-            ]
-        ],
-        "info": "witch relay 3 on. (true=on   false=off)\ncurl -u admin:1234 -X PUT -H \"X-CSRF: x\" --data \"value=true\" --digest \"http://192.168.0.100/restapi/relay/outlets/2/state/\" .\n\n\nTurn all relays on.\ncurl -u admin:1234 -X PUT -H \"X-CSRF: x\" --data \"value=true\" --digest \"http://192.168.0.100/restapi/relay/outlets/all;/state/\"\n\n\nTurn relays 1 and 5 on.\ncurl -u admin:1234 -X PUT -H \"X-CSRF: x\" --data \"value=true\" --digest \"http://192.168.0.100/restapi/relay/outlets/=0,4/state/\"\n\n\nGet the status of relay/outlet 1\ncurl -k -u admin:1234 -H \"Accept:application/json\" --digest https://192.168.0.100/restapi/relay/outlets/2/state/\n\n\nGet the status of all relays\ncurl -k -u admin:1234 -H \"Accept:application/json\" --digest https://192.168.0.100/restapi/relay/outlets/all;/state/"
-    },
-    {
-        "id": "e8aa4646.9c6388",
-        "type": "delay",
-        "z": "5ef48879.68e9d",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "3",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 1080,
-        "y": 480,
-        "wires": [
-            [
-                "5fccc84a.8c604"
-            ]
-        ]
-    },
-    {
         "id": "d4cb538a.40aff8",
         "type": "debug",
         "z": "5ef48879.68e9d",
@@ -5443,8 +4821,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1060,
-        "y": 740,
+        "x": 1030,
+        "y": 280,
         "wires": []
     },
     {
@@ -10604,5 +9982,28 @@
         "x": 1190,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "98409b84.91e33",
+        "type": "delay",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 820,
+        "y": 380,
+        "wires": [
+            [
+                "e4f608b4.9d"
+            ]
+        ]
     }
 ]
