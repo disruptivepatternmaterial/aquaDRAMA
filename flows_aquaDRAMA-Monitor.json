@@ -56,6 +56,13 @@
         "info": ""
     },
     {
+        "id": "9deb04d0.aa4f28",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "67af22e5.ab600c",
         "type": "ui_base",
         "theme": {
@@ -312,14 +319,42 @@
         "collapse": false
     },
     {
-        "id": "68c5b599.631364",
+        "id": "98b8d8a4.7712f",
         "type": "ui_group",
         "z": "",
-        "name": "New Control",
-        "tab": "",
+        "name": "Charts",
+        "tab": "a06b6ebb.a60008",
+        "order": 2,
         "disp": false,
-        "width": "8",
-        "collapse": false
+        "width": "6"
+    },
+    {
+        "id": "9194ecf2.f7205",
+        "type": "ui_group",
+        "z": "",
+        "name": "Inputs",
+        "tab": "a06b6ebb.a60008",
+        "order": 1,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "a7fd58c0.9241a8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 3",
+        "tab": "a06b6ebb.a60008",
+        "order": 3,
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "a06b6ebb.a60008",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Charts",
+        "icon": "dashboard",
+        "order": 2
     },
     {
         "id": "f589733a.8cc13",
@@ -2796,14 +2831,14 @@
         "id": "b9cf71bd.917378",
         "type": "smooth",
         "z": "2929a40e.ac6b7c",
-        "name": "Avg 10",
+        "name": "Avg 5",
         "property": "payload",
         "action": "mean",
         "count": "5",
         "round": "",
         "mult": "single",
-        "x": 330,
-        "y": 200,
+        "x": 210,
+        "y": 100,
         "wires": [
             [
                 "bfb3159b.8a9ab8"
@@ -2833,18 +2868,14 @@
         "checkall": "false",
         "repair": false,
         "outputs": 2,
-        "x": 630,
-        "y": 200,
+        "x": 210,
+        "y": 220,
         "wires": [
             [
-                "97ea2e3.652bfd",
-                "9b1bc17a.c1a4f8",
-                "ce1f46b2.4fcb8"
+                "55348f9e.80c2f8"
             ],
             [
-                "170b5139.54c6e7",
-                "9b1bc17a.c1a4f8",
-                "7d53421a.9a1aec"
+                "f053c55.0495538"
             ]
         ],
         "outputLabels": [
@@ -2863,13 +2894,15 @@
         "timer": "",
         "oldrc": false,
         "name": "Alk(red)",
-        "x": 1000,
-        "y": 200,
+        "x": 840,
+        "y": 240,
         "wires": [
             [
-                "f977d207.a99278"
+                "ac5383d4.3622e8"
             ],
-            [],
+            [
+                "ac5383d4.3622e8"
+            ],
             []
         ]
     },
@@ -2877,18 +2910,18 @@
         "id": "97ea2e3.652bfd",
         "type": "change",
         "z": "2929a40e.ac6b7c",
-        "name": "low pH - red",
+        "name": "Dose Alk",
         "rules": [
             {
                 "t": "set",
-                "p": "payload",
+                "p": "topic",
                 "pt": "msg",
-                "to": "101 D,10,2",
+                "to": "Alk",
                 "tot": "str"
             },
             {
                 "t": "set",
-                "p": "test",
+                "p": "payload",
                 "pt": "msg",
                 "to": "\"101 D,\"&dose&\",2\"",
                 "tot": "jsonata"
@@ -2899,12 +2932,14 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 830,
-        "y": 180,
+        "x": 520,
+        "y": 220,
         "wires": [
             [
                 "c67545d3.6dd918",
-                "68644b87.5da79c"
+                "d1a69b21.1037b",
+                "e5773d33.feccf8",
+                "9ef7c80.52ac638"
             ]
         ]
     },
@@ -2912,8 +2947,22 @@
         "id": "170b5139.54c6e7",
         "type": "change",
         "z": "2929a40e.ac6b7c",
-        "name": "high pH",
+        "name": "Stop Alk",
         "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Alk",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
             {
                 "t": "set",
                 "p": "payload",
@@ -2927,11 +2976,14 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 820,
-        "y": 220,
+        "x": 520,
+        "y": 260,
         "wires": [
             [
-                "c67545d3.6dd918"
+                "c67545d3.6dd918",
+                "d1a69b21.1037b",
+                "e5773d33.feccf8",
+                "9ef7c80.52ac638"
             ]
         ]
     },
@@ -2950,8 +3002,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
-        "x": 480,
-        "y": 200,
+        "x": 240,
+        "y": 160,
         "wires": [
             [
                 "7c59b680.fdf118"
@@ -2969,8 +3021,8 @@
             "a71d338.8ed9d5",
             "3a015274.a27006"
         ],
-        "x": 115,
-        "y": 200,
+        "x": 135,
+        "y": 40,
         "wires": [
             [
                 "349b01df.0d3ce6"
@@ -2982,9 +3034,9 @@
         "type": "catch",
         "z": "bafea1bb.8ac26",
         "name": "",
-        "scope": null,
+        "scope": [],
         "uncaught": false,
-        "x": 540,
+        "x": 530,
         "y": 260,
         "wires": [
             [
@@ -3026,125 +3078,11 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 500,
-        "y": 380,
-        "wires": [
-            [
-                "f75c8496.b6fe3"
-            ]
-        ]
-    },
-    {
-        "id": "c56a8965.9377f8",
-        "type": "exec",
-        "z": "2929a40e.ac6b7c",
-        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "Ca(green)",
-        "x": 1000,
-        "y": 380,
-        "wires": [
-            [
-                "968940b7.3f5278"
-            ],
-            [],
-            []
-        ]
-    },
-    {
-        "id": "f75c8496.b6fe3",
-        "type": "switch",
-        "z": "2929a40e.ac6b7c",
-        "name": "8.18",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "8.18",
-                "vt": "num"
-            },
-            {
-                "t": "gt",
-                "v": "8.18",
-                "vt": "num"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 630,
-        "y": 380,
-        "wires": [
-            [
-                "62803d47.b944ac",
-                "ccaaf47a.9a8468"
-            ],
-            [
-                "b5dc1161.aa81b8",
-                "615ac4d7.54bb24"
-            ]
-        ],
-        "outputLabels": [
-            "Dose",
-            "No Dose"
-        ]
-    },
-    {
-        "id": "62803d47.b944ac",
-        "type": "change",
-        "z": "2929a40e.ac6b7c",
-        "name": "low pH - green",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "104 D,10,2",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 840,
+        "x": 520,
         "y": 360,
         "wires": [
             [
-                "c56a8965.9377f8"
-            ]
-        ]
-    },
-    {
-        "id": "b5dc1161.aa81b8",
-        "type": "change",
-        "z": "2929a40e.ac6b7c",
-        "name": "high green",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "104 X",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 830,
-        "y": 400,
-        "wires": [
-            [
-                "c56a8965.9377f8"
+                "b5dc1161.aa81b8"
             ]
         ]
     },
@@ -3155,8 +3093,8 @@
         "name": "",
         "scope": null,
         "uncaught": false,
-        "x": 240,
-        "y": 520,
+        "x": 160,
+        "y": 760,
         "wires": [
             [
                 "b2f766ae.4d4308",
@@ -3177,8 +3115,8 @@
         "cancel": "",
         "topic": "",
         "name": "",
-        "x": 570,
-        "y": 500,
+        "x": 490,
+        "y": 740,
         "wires": []
     },
     {
@@ -3192,8 +3130,8 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 400,
-        "y": 540,
+        "x": 320,
+        "y": 780,
         "wires": [],
         "icon": "font-awesome/fa-bolt"
     },
@@ -3230,8 +3168,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 500,
+        "x": 320,
+        "y": 740,
         "wires": [
             [
                 "bfc2dfe2.3a20b8"
@@ -3271,8 +3209,15 @@
                 "t": "set",
                 "p": "dose",
                 "pt": "msg",
-                "to": "10",
+                "to": "20",
                 "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "dosing",
+                "tot": "str"
             }
         ],
         "action": "",
@@ -3280,8 +3225,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 210,
-        "y": 200,
+        "x": 230,
+        "y": 40,
         "wires": [
             [
                 "b9cf71bd.917378"
@@ -3297,10 +3242,11 @@
             "39f91b23.4eab44"
         ],
         "x": 155,
-        "y": 60,
+        "y": 120,
         "wires": [
             [
-                "cd382899.1fbdd"
+                "cd382899.1fbdd",
+                "b70b339d.6327c"
             ]
         ]
     },
@@ -3309,7 +3255,7 @@
         "type": "switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "property": "payload.value",
+        "property": "payload",
         "propertyType": "msg",
         "rules": [
             {
@@ -3364,7 +3310,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 510,
+        "x": 670,
         "y": 220,
         "wires": [
             [
@@ -3396,7 +3342,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 500,
+        "x": 660,
         "y": 340,
         "wires": [
             [
@@ -3427,7 +3373,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 520,
+        "x": 680,
         "y": 460,
         "wires": [
             [
@@ -3458,7 +3404,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 510,
+        "x": 670,
         "y": 280,
         "wires": [
             [
@@ -3613,7 +3559,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 510,
+        "x": 670,
         "y": 400,
         "wires": [
             [
@@ -3644,7 +3590,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 500,
+        "x": 660,
         "y": 520,
         "wires": [
             [
@@ -3667,17 +3613,26 @@
                 "on_h": "02",
                 "on_m": "15",
                 "on_s": "00",
-                "off_h": "12",
+                "off_h": "04",
+                "off_m": "15",
+                "off_s": "00",
+                "valid": true
+            },
+            {
+                "on_h": "14",
+                "on_m": "15",
+                "on_s": "00",
+                "off_h": "16",
                 "off_m": "15",
                 "off_s": "00",
                 "valid": true
             }
         ],
-        "x": 330,
+        "x": 230,
         "y": 460,
         "wires": [
             [
-                "e78ee59e.638fd"
+                "36872fbd.04392"
             ]
         ]
     },
@@ -3818,7 +3773,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 520,
+        "x": 680,
         "y": 580,
         "wires": [
             [
@@ -3849,7 +3804,7 @@
         "offvalueType": "str",
         "officon": "",
         "offcolor": "",
-        "x": 510,
+        "x": 670,
         "y": 640,
         "wires": [
             [
@@ -3903,11 +3858,11 @@
         "method": "PUT",
         "ret": "txt",
         "paytoqs": false,
-        "url": "http://192.168.40.148/restapi/relay/outlets/{{{topic}}}/state/",
+        "url": "http://aquaDRAMA-Outlets.iot.8ph.lan/restapi/relay/outlets/{{{topic}}}/state/",
         "tls": "",
         "proxy": "",
         "authType": "digest",
-        "x": 990,
+        "x": 1150,
         "y": 220,
         "wires": [
             [
@@ -3942,7 +3897,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
+        "x": 870,
         "y": 220,
         "wires": [
             [
@@ -3958,7 +3913,7 @@
         "topic": "StartRead",
         "payload": "102 R",
         "payloadType": "str",
-        "repeat": "150",
+        "repeat": "60",
         "crontab": "",
         "once": true,
         "onceDelay": 0.1,
@@ -4451,7 +4406,8 @@
         "wires": [
             [
                 "c5785772.a1e95",
-                "39f91b23.4eab44"
+                "39f91b23.4eab44",
+                "112b863d.33293a"
             ]
         ]
     },
@@ -4904,7 +4860,7 @@
         "type": "debug",
         "z": "a6dbe4cf.51fb78",
         "name": "Temp Debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4934,7 +4890,7 @@
         "type": "debug",
         "z": "a6dbe4cf.51fb78",
         "name": "SG Debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -4949,7 +4905,7 @@
         "type": "debug",
         "z": "a6dbe4cf.51fb78",
         "name": "Sump Level Debug",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -5018,7 +4974,7 @@
         "dot": false,
         "ymin": "77",
         "ymax": "81",
-        "removeOlder": "3",
+        "removeOlder": "1",
         "removeOlderPoints": "",
         "removeOlderUnit": "86400",
         "cutout": 0,
@@ -5222,7 +5178,8 @@
         "z": "a66b0722.f72648",
         "name": "Load History-Temp-Stats",
         "links": [
-            "c7239f5.6da47e"
+            "c7239f5.6da47e",
+            "f44ee50f.906b98"
         ],
         "x": 335,
         "y": 200,
@@ -6096,7 +6053,8 @@
             [
                 "225a145c.979384",
                 "95ebd0a7.93ceb8",
-                "9fe0ee9e.a0929"
+                "9fe0ee9e.a0929",
+                "cdf7703a.e379a"
             ]
         ]
     },
@@ -6522,7 +6480,8 @@
         "z": "a66b0722.f72648",
         "name": "Load History-pH-Stats",
         "links": [
-            "3f0cb62a.752152"
+            "3f0cb62a.752152",
+            "f0a98de3.ea7a1"
         ],
         "x": 975,
         "y": 320,
@@ -6539,7 +6498,8 @@
         "z": "a66b0722.f72648",
         "name": "Load History-SG-Stats",
         "links": [
-            "bb064422.47561"
+            "bb064422.47561",
+            "e3654699.06c75"
         ],
         "x": 335,
         "y": 460,
@@ -6556,14 +6516,15 @@
         "z": "a66b0722.f72648",
         "name": "Load History-Sump-Stats",
         "links": [
-            "716ca0ba.132bc8"
+            "716ca0ba.132bc8",
+            "15ee3563.43aa03"
         ],
         "x": 975,
         "y": 640,
         "wires": [
             [
-                "10f250ca.093e27",
-                "b675b5db.7cfe18"
+                "b675b5db.7cfe18",
+                "10f250ca.093e27"
             ]
         ]
     },
@@ -7536,8 +7497,8 @@
         "width": "8",
         "height": "5",
         "label": "",
-        "chartType": "line",
-        "legend": "false",
+        "chartType": "bar",
+        "legend": "true",
         "xformat": "dd HH:mm",
         "interpolate": "linear",
         "nodata": "...loading data...",
@@ -7550,9 +7511,9 @@
         "cutout": 0,
         "useOneColor": false,
         "colors": [
-            "#ff9300",
-            "#0432ff",
-            "#ff7f0e",
+            "#3a88fe",
+            "#ffcb3e",
+            "#96d35f",
             "#2ca02c",
             "#98df8a",
             "#d62728",
@@ -7574,14 +7535,14 @@
         "id": "fb768859.90969",
         "type": "change",
         "z": "a66b0722.f72648",
-        "name": "Alk-20",
+        "name": "Alk",
         "rules": [
             {
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "20",
-                "tot": "num"
+                "to": "dose",
+                "tot": "msg"
             },
             {
                 "t": "set",
@@ -7594,8 +7555,8 @@
                 "t": "set",
                 "p": "Alkalinity",
                 "pt": "flow",
-                "to": "20",
-                "tot": "num"
+                "to": "dose",
+                "tot": "msg"
             }
         ],
         "action": "",
@@ -7603,137 +7564,11 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 430,
-        "y": 660,
+        "x": 410,
+        "y": 740,
         "wires": [
             [
-                "ea6d2967.19f6c",
-                "ba70fbee.161db8",
-                "4b0ff00e.d6479"
-            ]
-        ]
-    },
-    {
-        "id": "e5687ef1.3630d8",
-        "type": "change",
-        "z": "a66b0722.f72648",
-        "name": "Ca-20",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "20",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Calcium",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "Calcium",
-                "pt": "flow",
-                "to": "20",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 430,
-        "y": 620,
-        "wires": [
-            [
-                "ea6d2967.19f6c",
-                "48443b43.0947ac"
-            ]
-        ]
-    },
-    {
-        "id": "9cffb0f7.f1d01",
-        "type": "change",
-        "z": "a66b0722.f72648",
-        "name": "Ca-0",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Calcium",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "Calcium",
-                "pt": "flow",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 430,
-        "y": 760,
-        "wires": [
-            [
-                "ea6d2967.19f6c"
-            ]
-        ]
-    },
-    {
-        "id": "3ee84d77.d9ea52",
-        "type": "change",
-        "z": "a66b0722.f72648",
-        "name": "Alk-0",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "num"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Alkalinity",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "Alkalinity",
-                "pt": "flow",
-                "to": "0",
-                "tot": "num"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 430,
-        "y": 720,
-        "wires": [
-            [
-                "ea6d2967.19f6c"
+                "ba70fbee.161db8"
             ]
         ]
     },
@@ -7749,107 +7584,6 @@
         "encoding": "utf8",
         "x": 990,
         "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "3cba9a98.fe5036",
-        "type": "change",
-        "z": "a66b0722.f72648",
-        "name": "Alk for Ballance",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "(($number($flowContext('Alkalinity')))+20)",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Alkalinity",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "Alkalinity",
-                "pt": "flow",
-                "to": "(($number($flowContext('Alkalinity')))+20)",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 820,
-        "wires": [
-            [
-                "daa662cb.58b808"
-            ]
-        ]
-    },
-    {
-        "id": "daa662cb.58b808",
-        "type": "ui_chart",
-        "z": "a66b0722.f72648",
-        "name": "",
-        "group": "91b90543.847de8",
-        "order": 1,
-        "width": "5",
-        "height": "3",
-        "label": "Dose Ballance",
-        "chartType": "pie",
-        "legend": "true",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "...loading data...",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": "5",
-        "useOneColor": false,
-        "colors": [
-            "#ff9300",
-            "#0432ff",
-            "#2ca02c",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": false,
-        "outputs": 1,
-        "x": 840,
-        "y": 800,
-        "wires": [
-            [
-                "fb50fb54.3a9cd"
-            ]
-        ]
-    },
-    {
-        "id": "fb50fb54.3a9cd",
-        "type": "file",
-        "z": "a66b0722.f72648",
-        "name": "wo",
-        "filename": "/home/pi/Backups/node-data/dose-ballance-graph.json",
-        "appendNewline": false,
-        "createDir": false,
-        "overwriteFile": "true",
-        "encoding": "utf8",
-        "x": 990,
-        "y": 800,
         "wires": [
             []
         ]
@@ -7909,56 +7643,13 @@
         "wires": []
     },
     {
-        "id": "f672dbbd.75d96",
-        "type": "change",
-        "z": "a66b0722.f72648",
-        "name": "Ca for Ballance",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "(($number($flowContext('Calcium')))+20)",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Calcium",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "Calcium",
-                "pt": "flow",
-                "to": "(\t   (\t       $number($flowContext('Calcium'))\t   )+20\t)",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 460,
-        "y": 860,
-        "wires": [
-            [
-                "daa662cb.58b808"
-            ]
-        ]
-    },
-    {
         "id": "2c3f2b2c.8242ec",
         "type": "link in",
         "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "ccaaf47a.9a8468"
-        ],
-        "x": 335,
-        "y": 620,
+        "name": "Ca Dose UI",
+        "links": [],
+        "x": 315,
+        "y": 700,
         "wires": [
             [
                 "e5687ef1.3630d8"
@@ -7969,12 +7660,10 @@
         "id": "eae9fc7f.4591a",
         "type": "link in",
         "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "ce1f46b2.4fcb8"
-        ],
-        "x": 335,
-        "y": 660,
+        "name": "Alk Dose UI",
+        "links": [],
+        "x": 315,
+        "y": 740,
         "wires": [
             [
                 "fb768859.90969"
@@ -7982,77 +7671,15 @@
         ]
     },
     {
-        "id": "6673ea38.6b1594",
-        "type": "link in",
-        "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "7d53421a.9a1aec"
-        ],
-        "x": 335,
-        "y": 720,
-        "wires": [
-            [
-                "3ee84d77.d9ea52"
-            ]
-        ]
-    },
-    {
-        "id": "fe33747d.3af99",
-        "type": "link in",
-        "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "615ac4d7.54bb24"
-        ],
-        "x": 335,
-        "y": 760,
-        "wires": [
-            [
-                "9cffb0f7.f1d01"
-            ]
-        ]
-    },
-    {
-        "id": "b2bc24e2.d70548",
-        "type": "link in",
-        "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "ce1f46b2.4fcb8"
-        ],
-        "x": 335,
-        "y": 820,
-        "wires": [
-            [
-                "3cba9a98.fe5036"
-            ]
-        ]
-    },
-    {
-        "id": "2b078c06.0a3a1c",
-        "type": "link in",
-        "z": "a66b0722.f72648",
-        "name": "",
-        "links": [
-            "ccaaf47a.9a8468"
-        ],
-        "x": 335,
-        "y": 860,
-        "wires": [
-            [
-                "f672dbbd.75d96"
-            ]
-        ]
-    },
-    {
         "id": "e7168043.a075f8",
         "type": "link in",
         "z": "a66b0722.f72648",
-        "name": "",
+        "name": "Dose Error Dashboard",
         "links": [
             "968940b7.3f5278",
-            "f977d207.a99278"
+            "f977d207.a99278",
+            "de8908c6.77f35",
+            "707879db.a193f8"
         ],
         "x": 335,
         "y": 920,
@@ -8107,7 +7734,7 @@
         "type": "debug",
         "z": "bafea1bb.8ac26",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -8123,8 +7750,7 @@
         "z": "bafea1bb.8ac26",
         "name": "DOSE-Out to Thinger.io",
         "links": [
-            "ccaaf47a.9a8468",
-            "ce1f46b2.4fcb8"
+            "e448f91e.10221"
         ],
         "x": 915,
         "y": 340,
@@ -8135,144 +7761,21 @@
         ]
     },
     {
-        "id": "c73eab74.ae7a28",
-        "type": "ui_text",
-        "z": "a66b0722.f72648",
-        "group": "91b90543.847de8",
-        "order": 4,
-        "width": "3",
-        "height": "1",
-        "name": "",
-        "label": "Last Dose",
-        "format": "<font color= {{msg.color}} > {{msg.payload}} </font>",
-        "layout": "row-spread",
-        "x": 820,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "4b0ff00e.d6479",
-        "type": "function",
-        "z": "a66b0722.f72648",
-        "name": "Format Date",
-        "func": "\nvar date;\ndate = new Date(global.get(\"lastRun\"));\ndate = (('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\nmsg.payload = date;\nmsg.color = 'green';\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 670,
-        "y": 600,
-        "wires": [
-            [
-                "c73eab74.ae7a28"
-            ]
-        ]
-    },
-    {
-        "id": "f977d207.a99278",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Alk-Script-Out",
-        "links": [
-            "e7168043.a075f8"
-        ],
-        "x": 1115,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "968940b7.3f5278",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Ca-Script-Out",
-        "links": [
-            "e7168043.a075f8"
-        ],
-        "x": 1115,
-        "y": 380,
-        "wires": []
-    },
-    {
         "id": "99fd0bd5.44ae68",
         "type": "link in",
         "z": "a66b0722.f72648",
         "name": "Load Historical Dose History",
         "links": [
-            "56b59ff7.9b9f98"
+            "56b59ff7.9b9f98",
+            "823cfcf1.8ba968"
         ],
         "x": 715,
-        "y": 760,
+        "y": 740,
         "wires": [
             [
                 "ea6d2967.19f6c"
             ]
         ]
-    },
-    {
-        "id": "1715a705.03e141",
-        "type": "link in",
-        "z": "a66b0722.f72648",
-        "name": "Load Historical Ballance History",
-        "links": [
-            "3ea3e36e.8fa4e4"
-        ],
-        "x": 715,
-        "y": 820,
-        "wires": [
-            [
-                "daa662cb.58b808"
-            ]
-        ]
-    },
-    {
-        "id": "615ac4d7.54bb24",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Ca-Out-0",
-        "links": [
-            "fe33747d.3af99"
-        ],
-        "x": 775,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "ccaaf47a.9a8468",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Ca-Out-20",
-        "links": [
-            "2c3f2b2c.8242ec",
-            "2b078c06.0a3a1c",
-            "41a189a4.bf0568"
-        ],
-        "x": 775,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "7d53421a.9a1aec",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Alk-Out-0",
-        "links": [
-            "6673ea38.6b1594"
-        ],
-        "x": 775,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "ce1f46b2.4fcb8",
-        "type": "link out",
-        "z": "2929a40e.ac6b7c",
-        "name": "Dose-Alk-Out-20",
-        "links": [
-            "eae9fc7f.4591a",
-            "b2bc24e2.d70548",
-            "41a189a4.bf0568"
-        ],
-        "x": 775,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "63a00c2e.a02dbc",
@@ -8387,9 +7890,9 @@
         "type": "catch",
         "z": "a66b0722.f72648",
         "name": "",
-        "scope": null,
+        "scope": [],
         "uncaught": false,
-        "x": 280,
+        "x": 270,
         "y": 1080,
         "wires": [
             [
@@ -8983,7 +8486,12 @@
             "3d35265.7eda3da",
             "c693abfa.9be2e8",
             "48399b87.73e6f4",
-            "f1eb75d3.8254b8"
+            "f1eb75d3.8254b8",
+            "43dc9f4f.86a948",
+            "29ded315.053aec",
+            "5340d3f8.9395c4",
+            "16ed730.c10d68d",
+            "7e819538.f753fc"
         ],
         "x": 195,
         "y": 1060,
@@ -9188,8 +8696,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 400,
-        "y": 580,
+        "x": 320,
+        "y": 820,
         "wires": [
             [
                 "3d35265.7eda3da"
@@ -9205,8 +8713,8 @@
             "9676cd6c.88a74",
             "e3ef1e7b.b4e66"
         ],
-        "x": 495,
-        "y": 580,
+        "x": 435,
+        "y": 820,
         "wires": []
     },
     {
@@ -9689,44 +9197,22 @@
         ]
     },
     {
-        "id": "2113a0ac.a61a6",
-        "type": "trigger",
-        "z": "2929a40e.ac6b7c",
-        "op1": "",
-        "op2": "0",
-        "op1type": "pay",
-        "op2type": "json",
-        "duration": "5",
-        "extend": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "name": "5s",
-        "x": 370,
-        "y": 260,
-        "wires": [
-            [
-                "8036ea01.4e4a48"
-            ]
-        ]
-    },
-    {
         "id": "8ac10f3d.252378",
         "type": "inject",
         "z": "2929a40e.ac6b7c",
         "name": "6am Dose",
-        "topic": "7",
+        "topic": "",
         "payload": "",
-        "payloadType": "num",
+        "payloadType": "date",
         "repeat": "",
         "crontab": "00 06 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 280,
+        "x": 170,
+        "y": 360,
         "wires": [
             [
-                "2113a0ac.a61a6"
+                "8036ea01.4e4a48"
             ]
         ]
     },
@@ -9735,62 +9221,20 @@
         "type": "inject",
         "z": "2929a40e.ac6b7c",
         "name": "4am Dose",
-        "topic": "7",
+        "topic": "",
         "payload": "",
-        "payloadType": "num",
+        "payloadType": "date",
         "repeat": "",
         "crontab": "00 04 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 190,
-        "y": 240,
+        "x": 170,
+        "y": 400,
         "wires": [
             [
-                "2113a0ac.a61a6"
+                "8036ea01.4e4a48"
             ]
         ]
-    },
-    {
-        "id": "8036ea01.4e4a48",
-        "type": "change",
-        "z": "2929a40e.ac6b7c",
-        "name": "ts",
-        "rules": [
-            {
-                "t": "set",
-                "p": "timestamp",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 510,
-        "y": 260,
-        "wires": [
-            [
-                "7c59b680.fdf118"
-            ]
-        ]
-    },
-    {
-        "id": "68644b87.5da79c",
-        "type": "debug",
-        "z": "2929a40e.ac6b7c",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 990,
-        "y": 120,
-        "wires": []
     },
     {
         "id": "98409b84.91e33",
@@ -9807,7 +9251,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 840,
+        "x": 1000,
         "y": 220,
         "wires": [
             [
@@ -9827,7 +9271,7 @@
         "tls": "",
         "proxy": "",
         "authType": "digest",
-        "x": 990,
+        "x": 1150,
         "y": 300,
         "wires": [
             [
@@ -9850,7 +9294,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 840,
+        "x": 1000,
         "y": 300,
         "wires": [
             [
@@ -10059,13 +9503,19 @@
             "3d35265.7eda3da",
             "c693abfa.9be2e8",
             "48399b87.73e6f4",
-            "f1eb75d3.8254b8"
+            "f1eb75d3.8254b8",
+            "43dc9f4f.86a948",
+            "29ded315.053aec",
+            "5340d3f8.9395c4",
+            "16ed730.c10d68d",
+            "7e819538.f753fc"
         ],
         "x": 255,
         "y": 900,
         "wires": [
             [
-                "cc043a2b.241e98"
+                "cc043a2b.241e98",
+                "f829fa4f.214218"
             ]
         ]
     },
@@ -10159,7 +9609,7 @@
         "tostatus": false,
         "complete": "true",
         "targetType": "full",
-        "x": 1130,
+        "x": 1290,
         "y": 300,
         "wires": []
     },
@@ -10182,6 +9632,2379 @@
             [
                 "16ccaf2d.f532f1",
                 "c46754a3.b9767"
+            ]
+        ]
+    },
+    {
+        "id": "cdf7703a.e379a",
+        "type": "debug",
+        "z": "a66b0722.f72648",
+        "name": "temp debug for time",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 470,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "8036ea01.4e4a48",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose 20",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "97ea2e3.652bfd",
+                "5cda0f4b.ba8ce8"
+            ]
+        ]
+    },
+    {
+        "id": "637fe031.7dac3",
+        "type": "inject",
+        "z": "2929a40e.ac6b7c",
+        "name": "Mg Doses",
+        "topic": "Mg",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "21600",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 500,
+        "wires": [
+            [
+                "17374842.17ce98"
+            ]
+        ]
+    },
+    {
+        "id": "72f7dba7.e86b0c",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Mg(color)",
+        "x": 840,
+        "y": 500,
+        "wires": [
+            [
+                "ac5383d4.3622e8"
+            ],
+            [
+                "ac5383d4.3622e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "636a46ea.16fac",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose Mg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"110 D,\"&dose&\",2\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 500,
+        "wires": [
+            [
+                "72f7dba7.e86b0c",
+                "d1a69b21.1037b",
+                "d6a0aa8c.7d3878"
+            ]
+        ]
+    },
+    {
+        "id": "ac5383d4.3622e8",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "reformat",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Doser Error",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "ts",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "content",
+                "pt": "msg",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 360,
+        "wires": [
+            [
+                "43dc9f4f.86a948",
+                "5d5ff7a2.2db67"
+            ]
+        ]
+    },
+    {
+        "id": "43dc9f4f.86a948",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "links": [
+            "9676cd6c.88a74",
+            "e3ef1e7b.b4e66"
+        ],
+        "x": 1215,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d948afd7.2c96e",
+        "type": "inject",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "topic": "sump level",
+        "payload": "5",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "cd382899.1fbdd"
+            ]
+        ]
+    },
+    {
+        "id": "b70b339d.6327c",
+        "type": "debug",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 100,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8ae732b0.4d8bc",
+        "type": "inject",
+        "z": "2929a40e.ac6b7c",
+        "name": "2am Dose",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 02 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "8036ea01.4e4a48"
+            ]
+        ]
+    },
+    {
+        "id": "f829fa4f.214218",
+        "type": "debug",
+        "z": "5ef48879.68e9d",
+        "name": "debug logs",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 340,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "55348f9e.80c2f8",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose 20",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "97ea2e3.652bfd",
+                "5cda0f4b.ba8ce8"
+            ]
+        ]
+    },
+    {
+        "id": "f053c55.0495538",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(payload)\t",
+                "tot": "jsonata"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 360,
+        "y": 260,
+        "wires": [
+            [
+                "170b5139.54c6e7",
+                "9b1bc17a.c1a4f8"
+            ]
+        ]
+    },
+    {
+        "id": "5cda0f4b.ba8ce8",
+        "type": "delay",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "90",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 520,
+        "y": 320,
+        "wires": [
+            [
+                "62803d47.b944ac"
+            ]
+        ]
+    },
+    {
+        "id": "c56a8965.9377f8",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Ca(green)",
+        "x": 840,
+        "y": 340,
+        "wires": [
+            [
+                "ac5383d4.3622e8"
+            ],
+            [
+                "ac5383d4.3622e8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "62803d47.b944ac",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose Ca",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Ca",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "\"104 D,\"&dose&\",2\"",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 320,
+        "wires": [
+            [
+                "c56a8965.9377f8",
+                "d1a69b21.1037b",
+                "e5773d33.feccf8",
+                "d5d3c381.272f48"
+            ]
+        ]
+    },
+    {
+        "id": "b5dc1161.aa81b8",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose Ca",
+        "rules": [
+            {
+                "t": "set",
+                "p": "Topic",
+                "pt": "msg",
+                "to": "Ca",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "104 X",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 660,
+        "y": 360,
+        "wires": [
+            [
+                "c56a8965.9377f8",
+                "d1a69b21.1037b",
+                "e5773d33.feccf8",
+                "d5d3c381.272f48"
+            ]
+        ]
+    },
+    {
+        "id": "17374842.17ce98",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Dose 20",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "dose",
+                "pt": "msg",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 500,
+        "wires": [
+            [
+                "636a46ea.16fac"
+            ]
+        ]
+    },
+    {
+        "id": "d1a69b21.1037b",
+        "type": "debug",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1230,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5d5ff7a2.2db67",
+        "type": "debug",
+        "z": "2929a40e.ac6b7c",
+        "name": "Logging",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 980,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e448f91e.10221",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "links": [
+            "41a189a4.bf0568"
+        ],
+        "x": 1175,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e5773d33.feccf8",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "dose",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1040,
+        "y": 80,
+        "wires": [
+            [
+                "e448f91e.10221",
+                "a1640a96.521a4"
+            ]
+        ]
+    },
+    {
+        "id": "e5687ef1.3630d8",
+        "type": "change",
+        "z": "a66b0722.f72648",
+        "name": "Ca",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "dose",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Calcium",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "Calcium",
+                "pt": "flow",
+                "to": "dose",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 700,
+        "wires": [
+            [
+                "48443b43.0947ac"
+            ]
+        ]
+    },
+    {
+        "id": "7d00c9a1.77b45",
+        "type": "ui_text",
+        "z": "a66b0722.f72648",
+        "group": "91b90543.847de8",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "name": "",
+        "label": "Mg Dose",
+        "format": "<font color= {{msg.color}} > {{msg.payload}} </font>",
+        "layout": "row-spread",
+        "x": 820,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "d220e432.be472",
+        "type": "aggregator",
+        "z": "a66b0722.f72648",
+        "name": "",
+        "topic": "",
+        "intervalCount": "24",
+        "intervalUnits": "h",
+        "submitIncompleteInterval": true,
+        "submitPerTopic": true,
+        "aggregationType": "sum",
+        "x": 670,
+        "y": 600,
+        "wires": [
+            [
+                "7d00c9a1.77b45"
+            ]
+        ]
+    },
+    {
+        "id": "2efc2f7a.3666",
+        "type": "link in",
+        "z": "a66b0722.f72648",
+        "name": "Mg Dose UI",
+        "links": [
+            "d6a0aa8c.7d3878"
+        ],
+        "x": 315,
+        "y": 600,
+        "wires": [
+            [
+                "e15a6c4d.50c0b"
+            ]
+        ]
+    },
+    {
+        "id": "e15a6c4d.50c0b",
+        "type": "change",
+        "z": "a66b0722.f72648",
+        "name": "Mg",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "dose",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Magnesium",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "Magnesium",
+                "pt": "flow",
+                "to": "dose",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 600,
+        "wires": [
+            [
+                "d220e432.be472"
+            ]
+        ]
+    },
+    {
+        "id": "9ef7c80.52ac638",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "Alk Ui Out",
+        "links": [],
+        "x": 675,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d5d3c381.272f48",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "Ca Ui Out",
+        "links": [],
+        "x": 795,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "d6a0aa8c.7d3878",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "Mg Ui Out",
+        "links": [
+            "2efc2f7a.3666"
+        ],
+        "x": 815,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a1640a96.521a4",
+        "type": "debug",
+        "z": "2929a40e.ac6b7c",
+        "name": "thinger",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1210,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3d45a885.9c1e2",
+        "type": "inject",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 12 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 170,
+        "y": 580,
+        "wires": [
+            [
+                "c4fdc39f.8127",
+                "86f5a511.b52348"
+            ]
+        ]
+    },
+    {
+        "id": "c4fdc39f.8127",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Ca-104 TV,?",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "104 TV,?",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Ca",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 560,
+        "wires": [
+            [
+                "d7bec4b0.23dfd8"
+            ]
+        ]
+    },
+    {
+        "id": "86f5a511.b52348",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Alk-101 TV,?",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "101 TV,?",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Alk",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 600,
+        "wires": [
+            [
+                "b8d9b849.6ca0b"
+            ]
+        ]
+    },
+    {
+        "id": "d7bec4b0.23dfd8",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Volume",
+        "x": 500,
+        "y": 540,
+        "wires": [
+            [
+                "e47bf9a0.783ef"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b8d9b849.6ca0b",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Volume",
+        "x": 500,
+        "y": 620,
+        "wires": [
+            [
+                "980c72fa.5639e"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "79196031.8a698",
+        "type": "link out",
+        "z": "2929a40e.ac6b7c",
+        "name": "",
+        "links": [
+            "e755d03b.625048",
+            "24a817fd.da8b08"
+        ],
+        "x": 735,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "980c72fa.5639e",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Alk",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "ttl Alk",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number($split(payload, ',')[1])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 620,
+        "wires": [
+            [
+                "79196031.8a698",
+                "17fe1a94.b35add",
+                "5296809b.0402b"
+            ]
+        ]
+    },
+    {
+        "id": "e47bf9a0.783ef",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Ca",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "ttl Ca",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number($split(payload, ',')[1])",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 630,
+        "y": 540,
+        "wires": [
+            [
+                "79196031.8a698",
+                "17fe1a94.b35add",
+                "262148a1.565e08"
+            ]
+        ]
+    },
+    {
+        "id": "17fe1a94.b35add",
+        "type": "debug",
+        "z": "2929a40e.ac6b7c",
+        "name": "thinger 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 840,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "262148a1.565e08",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Ca-104 Clear",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "104 Clear",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Ca",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 810,
+        "y": 780,
+        "wires": [
+            [
+                "8cd19d63.61bbb8"
+            ]
+        ]
+    },
+    {
+        "id": "5296809b.0402b",
+        "type": "change",
+        "z": "2929a40e.ac6b7c",
+        "name": "Alk-101 Clear",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "101 Clear",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Alk",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 820,
+        "wires": [
+            [
+                "ea52f51b.c6b16"
+            ]
+        ]
+    },
+    {
+        "id": "8cd19d63.61bbb8",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Volume",
+        "x": 980,
+        "y": 760,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ea52f51b.c6b16",
+        "type": "exec",
+        "z": "2929a40e.ac6b7c",
+        "command": "python3 /home/pi/node-red-scripts/call-i2c-atlas.py",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "Volume",
+        "x": 980,
+        "y": 840,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a530a7bf.d9909",
+        "type": "gate",
+        "z": "5ef48879.68e9d",
+        "name": "cgr",
+        "controlTopic": "control",
+        "defaultState": "open",
+        "openCmd": "open",
+        "closeCmd": "close",
+        "toggleCmd": "toggle",
+        "defaultCmd": "default",
+        "persist": true,
+        "x": 530,
+        "y": 460,
+        "wires": [
+            [
+                "e78ee59e.638fd"
+            ]
+        ]
+    },
+    {
+        "id": "36872fbd.04392",
+        "type": "ui_switch",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "label": "Changer",
+        "tooltip": "",
+        "group": "64f54271.7e742c",
+        "order": 21,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "control",
+        "style": "",
+        "onvalue": "open",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "close",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "a530a7bf.d9909",
+                "b0eff373.4f6b6"
+            ]
+        ]
+    },
+    {
+        "id": "4b87f915.9d8d98",
+        "type": "change",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enable",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 700,
+        "wires": [
+            [
+                "e78ee59e.638fd"
+            ]
+        ]
+    },
+    {
+        "id": "b0eff373.4f6b6",
+        "type": "switch",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "closed",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 350,
+        "y": 700,
+        "wires": [
+            [
+                "4b87f915.9d8d98"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9b9c7624.5a0a5",
+        "type": "bucket-write",
+        "z": "bafea1bb.8ac26",
+        "name": "aquaDRAMA8PHR",
+        "bucket": "aquaDRAMA8PHRDoseTotals",
+        "server": "f4918f71.8f2728",
+        "x": 1250,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "6ab0163f.136a8",
+        "type": "join",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "200",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 1040,
+        "y": 420,
+        "wires": [
+            [
+                "9b9c7624.5a0a5",
+                "bdcef8f0.8397a"
+            ]
+        ]
+    },
+    {
+        "id": "bdcef8f0.8397a",
+        "type": "debug",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1210,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "e755d03b.625048",
+        "type": "link in",
+        "z": "bafea1bb.8ac26",
+        "name": "DOSE Totals-Out to Thinger.io",
+        "links": [
+            "79196031.8a698"
+        ],
+        "x": 935,
+        "y": 420,
+        "wires": [
+            [
+                "6ab0163f.136a8"
+            ]
+        ]
+    },
+    {
+        "id": "e249bc38.f35e98",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m={};\nm.labels = [\"d1\", \"d2\", \"d3\", \"April\", \"May\", \"June\", \"July\"];\nm.series = ['Ca', 'Alk', 'Mg'];\nm.data = [\n    [65, 59, 80],\n    [28, 48, 40],\n    [38, 28, 20]\n  ];\nreturn {payload:[m]};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 500,
+        "wires": [
+            [
+                "9f5042d7.fd816",
+                "a12467d.19b1a98",
+                "2c4fd727.2c7838",
+                "4d52ddc3.100854"
+            ]
+        ]
+    },
+    {
+        "id": "9f5042d7.fd816",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "98b8d8a4.7712f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "label": "line chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "No Data",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 820,
+        "y": 240,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e0da7443.2a7aa",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var chart = [{\n    \"series\":[\"A\",\"B\",\"C\"],\n    \"data\":[[{\"x\":1504029632890,\"y\":5},{\"x\":1504029636001,\"y\":4},{\"x\":1504029638656,\"y\":2}],[{\"x\":1504029633514,\"y\":6},{\"x\":1504029636622,\"y\":7},{\"x\":1504029639539,\"y\":6}],[{\"x\":1504029634400,\"y\":7},{\"x\":1504029637959,\"y\":9},{\"x\":1504029640317,\"y\":7}]],\n    \"labels\":[\"\"]\n}];\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 340,
+        "wires": [
+            [
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "b7715ba9.3f4c08",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Time Line 1",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "e0da7443.2a7aa"
+            ]
+        ]
+    },
+    {
+        "id": "a12467d.19b1a98",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "98b8d8a4.7712f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "bar chart",
+        "chartType": "bar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "No Data",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 820,
+        "y": 300,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c60baaa3.e7c548",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 390,
+        "y": 500,
+        "wires": [
+            [
+                "e249bc38.f35e98"
+            ]
+        ]
+    },
+    {
+        "id": "9fe3b86c.2cf538",
+        "type": "random",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "low": "1",
+        "high": "10000000",
+        "inte": "true",
+        "x": 580,
+        "y": 700,
+        "wires": [
+            [
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "acd76ce3.17aef",
+        "type": "inject",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 410,
+        "y": 700,
+        "wires": [
+            [
+                "9fe3b86c.2cf538"
+            ]
+        ]
+    },
+    {
+        "id": "d05ad1b5.5b457",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m={};\nm.labels = [10,20,30,40,50,60,70];\nm.series = ['Series A', 'Series B', 'Series C', 'Series D'];\nm.data = [\n    [65, 59, 80, 81, 56, 55, 40],\n    [28, 48, 40, 19, 86, 27, 90],\n    [38, 28, 20, 49, 45, 60, 20],\n    [58, 18, 40, 29, 15, 30, 60]\n  ];\nreturn {payload:[m]};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 540,
+        "wires": [
+            [
+                "9f5042d7.fd816",
+                "a12467d.19b1a98",
+                "2c4fd727.2c7838",
+                "4d52ddc3.100854"
+            ]
+        ]
+    },
+    {
+        "id": "5484d0a2.5b62e8",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array2",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "d05ad1b5.5b457"
+            ]
+        ]
+    },
+    {
+        "id": "8fbcd816.47bbe",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var chart = [{\n    \"series\":[\"A\",\"B\",\"C\"],\n        \"data\":[[{\"x\":1,\"y\":5},{\"x\":2,\"y\":4},{\"x\":3,\"y\":2}],[{\"x\":4,\"y\":6},{\"x\":5,\"y\":7},{\"x\":6,\"y\":6}],[{\"x\":7,\"y\":7},{\"x\":8,\"y\":9},{\"x\":9,\"y\":7}]],\n    \"labels\":[\"\"]\n}];\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 380,
+        "wires": [
+            [
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "ab397624.2924a8",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Time Line 2",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 410,
+        "y": 380,
+        "wires": [
+            [
+                "8fbcd816.47bbe"
+            ]
+        ]
+    },
+    {
+        "id": "e2d62c4d.49ae7",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m = {};\nm.labels = [\"Download\", \"In-Store\", \"Mail-Order\"];\nm.data = [[300, 500, 100]];\nm.series = [\"Sales\"];\nreturn {payload:[m],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 740,
+        "wires": [
+            [
+                "4d52ddc3.100854",
+                "a12467d.19b1a98",
+                "9f5042d7.fd816",
+                "97b36f50.9366f8",
+                "678d9a16.60fa24",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "4d52ddc3.100854",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "pie chart",
+        "group": "98b8d8a4.7712f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "pie chart",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 860,
+        "y": 480,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "25e322eb.fc8db6",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array for pie",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Pie 4 T",
+        "x": 410,
+        "y": 740,
+        "wires": [
+            [
+                "e2d62c4d.49ae7"
+            ]
+        ]
+    },
+    {
+        "id": "4ddfbf8e.242e6",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var chart = [{\n    \"series\":[\"A\",\"B\",\"C\"],\n        \"data\":[[{\"x\":1000000,\"y\":5},{\"x\":2000000,\"y\":4},{\"x\":3000000,\"y\":2}],[{\"x\":4000000,\"y\":6},{\"x\":5000000,\"y\":7},{\"x\":6000000,\"y\":6}],[{\"x\":7000000,\"y\":7},{\"x\":8000000,\"y\":9},{\"x\":9000000,\"y\":7}]],\n    \"labels\":[\"\"]\n}];\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 420,
+        "wires": [
+            [
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "8898d58c.b9c56",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Time Line 3",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 410,
+        "y": 420,
+        "wires": [
+            [
+                "4ddfbf8e.242e6"
+            ]
+        ]
+    },
+    {
+        "id": "79569e0.159e464",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var chart = [{\n    \"series\":[\"A\",\"B\",\"C\"],\n        \"data\":[[{\"x\":1000000000,\"y\":5},{\"x\":2000000000,\"y\":4},{\"x\":3000000000,\"y\":2}],[{\"x\":4000000000,\"y\":6},{\"x\":5000000000,\"y\":7},{\"x\":6000000000,\"y\":6}],[{\"x\":7000000000,\"y\":7},{\"x\":8000000000,\"y\":9},{\"x\":9000000000,\"y\":7}]],\n    \"labels\":[\"\"]\n}];\nmsg.payload = chart;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 460,
+        "wires": [
+            [
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "4b312747.acb3b8",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Time Line 4",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 410,
+        "y": 460,
+        "wires": [
+            [
+                "79569e0.159e464"
+            ]
+        ]
+    },
+    {
+        "id": "5485dca7.7fe21c",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m={\n    \"series\":[\"X\",\"Y\",\"Z\"],\n    \"data\":[[5,6,9],[3,8,5],[6,7,2]],\n    \"labels\":[\"Jan\",\"Feb\",\"Mar\"]\n};\nreturn {payload:[m]};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 660,
+        "wires": [
+            [
+                "9f5042d7.fd816",
+                "a12467d.19b1a98",
+                "4d52ddc3.100854",
+                "97b36f50.9366f8",
+                "678d9a16.60fa24",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "c2364cc2.652668",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array3c",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 400,
+        "y": 660,
+        "wires": [
+            [
+                "5485dca7.7fe21c"
+            ]
+        ]
+    },
+    {
+        "id": "972811af.1203d8",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array 2 for pie",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "Pie Hole",
+        "x": 420,
+        "y": 780,
+        "wires": [
+            [
+                "363e3661.df74a2"
+            ]
+        ]
+    },
+    {
+        "id": "363e3661.df74a2",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m = {};\nm.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];\nm.data = [[28, 48, 40, 19, 86, 27, 90]];\nm.series = ['Series A'];\nreturn {payload:[m],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 780,
+        "wires": [
+            [
+                "4d52ddc3.100854",
+                "a12467d.19b1a98",
+                "678d9a16.60fa24",
+                "97b36f50.9366f8",
+                "9f5042d7.fd816",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "b609ce16.131498",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "topic",
+        "func": "var m = [\n    {topic:\"X\", payload:22},\n    {topic:\"Y\", payload:66},\n    {topic:\"Z\", payload:42}\n    ];\nreturn [m];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "a12467d.19b1a98",
+                "4d52ddc3.100854",
+                "9f5042d7.fd816",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "263c10a1.4f551",
+        "type": "inject",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 400,
+        "y": 300,
+        "wires": [
+            [
+                "b609ce16.131498"
+            ]
+        ]
+    },
+    {
+        "id": "4e028ad6.06bb8c",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "label",
+        "func": "var m = [\n    {label:\"A\", payload:22},\n    {label:\"B\", payload:66},\n    {label:\"C\", payload:42},\n    ];\nreturn [m];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 260,
+        "wires": [
+            [
+                "a12467d.19b1a98",
+                "4d52ddc3.100854",
+                "9f5042d7.fd816",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "f7b1a188.0475",
+        "type": "inject",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "4e028ad6.06bb8c"
+            ]
+        ]
+    },
+    {
+        "id": "90019293.4933c",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m={\n    \"series\":[\"X\",\"Y\",\"Z\"],\n    \"data\":[[5],[3],[6]],\n    \"labels\":[\"Jan\"]\n};\nreturn {payload:[m]};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 580,
+        "wires": [
+            [
+                "a12467d.19b1a98",
+                "97b36f50.9366f8",
+                "678d9a16.60fa24",
+                "9f5042d7.fd816",
+                "2c4fd727.2c7838",
+                "4d52ddc3.100854"
+            ]
+        ]
+    },
+    {
+        "id": "dbe19515.38107",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array3a",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 400,
+        "y": 580,
+        "wires": [
+            [
+                "90019293.4933c"
+            ]
+        ]
+    },
+    {
+        "id": "913f2f46.251698",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "func": "var m={\n    \"series\":[\"X\"],\n    \"data\":[[5,3,6]],\n    \"labels\":[\"Jan\",\"Feb\",\"Mar\"]\n};\nreturn {payload:[m]};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 620,
+        "wires": [
+            [
+                "a12467d.19b1a98",
+                "9f5042d7.fd816",
+                "678d9a16.60fa24",
+                "97b36f50.9366f8",
+                "2c4fd727.2c7838",
+                "4d52ddc3.100854"
+            ]
+        ]
+    },
+    {
+        "id": "b27adc44.7d14d8",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "array3b",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 400,
+        "y": 620,
+        "wires": [
+            [
+                "913f2f46.251698"
+            ]
+        ]
+    },
+    {
+        "id": "2c4fd727.2c7838",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "a7fd58c0.9241a8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "horizontal bar",
+        "chartType": "horizontalBar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 840,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "97b36f50.9366f8",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "a7fd58c0.9241a8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "polar chart",
+        "chartType": "polar-area",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 600,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "678d9a16.60fa24",
+        "type": "ui_chart",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "a7fd58c0.9241a8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "radar chart",
+        "chartType": "radar",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 2,
+        "x": 870,
+        "y": 660,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "684dbd2f.c1b6ac",
+        "type": "function",
+        "z": "9deb04d0.aa4f28",
+        "name": "label",
+        "func": "var m = [\n    {label:\"A\", payload:22, series:\"X\"},\n    {label:\"B\", payload:66, series:\"X\"},\n    {label:\"C\", payload:42, series:\"X\"},\n    {label:\"A\", payload:33, series:\"Y\"},\n    {label:\"B\", payload:72, series:\"Y\"},\n    {label:\"C\", payload:12, series:\"Y\"},\n    {label:\"A\", payload:44, series:\"Z\"},\n    {label:\"B\", payload:32, series:\"Z\"},\n    {label:\"C\", payload:80, series:\"Z\"}\n    ];\nreturn [m];",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 220,
+        "wires": [
+            [
+                "4d52ddc3.100854",
+                "a12467d.19b1a98",
+                "9f5042d7.fd816",
+                "2c4fd727.2c7838"
+            ]
+        ]
+    },
+    {
+        "id": "957f1746.c26c78",
+        "type": "inject",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 400,
+        "y": 220,
+        "wires": [
+            [
+                "684dbd2f.c1b6ac"
+            ]
+        ]
+    },
+    {
+        "id": "e3c79416.88f588",
+        "type": "ui_button",
+        "z": "9deb04d0.aa4f28",
+        "name": "",
+        "group": "9194ecf2.f7205",
+        "order": 11,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Clear All",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "",
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "678d9a16.60fa24",
+                "97b36f50.9366f8",
+                "4d52ddc3.100854",
+                "2c4fd727.2c7838",
+                "a12467d.19b1a98",
+                "9f5042d7.fd816"
+            ]
+        ]
+    },
+    {
+        "id": "a0e636d7.4973b",
+        "type": "json",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 930,
+        "y": 1160,
+        "wires": [
+            [
+                "fd7d2719.aa50d",
+                "823cfcf1.8ba968"
+            ]
+        ]
+    },
+    {
+        "id": "ad79ab39.b0f2e8",
+        "type": "function",
+        "z": "bafea1bb.8ac26",
+        "name": "transform-std dev",
+        "func": "var moment = global.get('moment');\n\nvar m={};\nm.series = ['Ca', 'Alk', 'Mg'];\nm.data=[];\nm.labels=[];\n\nfor (const foo of msg.payload) {\n        ts = foo.ts;\n        //ts = Number(foo.ts);\n        tsfmt = moment(ts).format('MM-DD');\n        ca = Math.round(Number(foo.val[\"ttl Ca\"]));\n        mg = 0; //Number(foo.ts);\n        ak = Math.round(Number(foo.val[\"ttl Alk\"]));\n        data = [ca,ak,mg];\n        m.data.push(data);\n        m.labels.push(tsfmt);\n}\nmsg = {payload:[m], topic:'Dosing Graph'};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 1160,
+        "wires": [
+            [
+                "a0e636d7.4973b"
+            ]
+        ],
+        "outputLabels": [
+            "temp"
+        ]
+    },
+    {
+        "id": "c012b4a0.3a364",
+        "type": "http request",
+        "z": "bafea1bb.8ac26",
+        "name": "get bucket data",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "http://api.thinger.io/v1/users/ntableman/buckets/aquaDRAMA8PHRDoseTotals/data?{{{parms}}}",
+        "tls": "",
+        "proxy": "",
+        "authType": "bearer",
+        "x": 460,
+        "y": 1160,
+        "wires": [
+            [
+                "fe1bc981.87734"
+            ]
+        ]
+    },
+    {
+        "id": "e4455e41.e3756",
+        "type": "inject",
+        "z": "bafea1bb.8ac26",
+        "name": "make request",
+        "topic": "bucket",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "21600",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "30",
+        "x": 120,
+        "y": 1120,
+        "wires": [
+            [
+                "d668c63d.d0d7d",
+                "f168ee5e.434fb"
+            ]
+        ]
+    },
+    {
+        "id": "a290d58a.97718",
+        "type": "function",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "func": "var timelimit = msg.payload;\nmsg.parms = 'items=200&max_ts=0&sort=asc';\nmsg.requestTimeout = 5000;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 1160,
+        "wires": [
+            [
+                "c012b4a0.3a364"
+            ]
+        ]
+    },
+    {
+        "id": "fe1bc981.87734",
+        "type": "switch",
+        "z": "bafea1bb.8ac26",
+        "name": "empty",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "empty"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 1160,
+        "wires": [
+            [],
+            [
+                "ad79ab39.b0f2e8"
+            ]
+        ]
+    },
+    {
+        "id": "222fdc21.4c050c",
+        "type": "comment",
+        "z": "bafea1bb.8ac26",
+        "name": "Load Historical Data from Thinger.io in 3 Steps",
+        "info": "",
+        "x": 780,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "fd7d2719.aa50d",
+        "type": "debug",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 1070,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "823cfcf1.8ba968",
+        "type": "link out",
+        "z": "bafea1bb.8ac26",
+        "name": "Thinger Dose",
+        "links": [
+            "99fd0bd5.44ae68"
+        ],
+        "x": 1035,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "d668c63d.d0d7d",
+        "type": "change",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "delete",
+                "p": "topic",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 1120,
+        "wires": [
+            [
+                "823cfcf1.8ba968"
+            ]
+        ]
+    },
+    {
+        "id": "f168ee5e.434fb",
+        "type": "delay",
+        "z": "bafea1bb.8ac26",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 180,
+        "y": 1160,
+        "wires": [
+            [
+                "a290d58a.97718"
             ]
         ]
     }
