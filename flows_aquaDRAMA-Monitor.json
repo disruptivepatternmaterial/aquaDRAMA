@@ -402,7 +402,7 @@
         "type": "debug",
         "z": "bafea1bb.8ac26",
         "name": "msg to thinger",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -481,7 +481,8 @@
         "y": 140,
         "wires": [
             [
-                "6a6deb80.023b7c"
+                "6a6deb80.023b7c",
+                "f589733a.8cc13"
             ]
         ]
     },
@@ -3053,7 +3054,7 @@
         "type": "function",
         "z": "bafea1bb.8ac26",
         "name": "Convert to Number",
-        "func": "var tempAsNum = Number(msg.payload.temperature);\nvar sgAsNum = Number(msg.payload[\"specific gravity\"]);\nvar pHAsNum = Number(msg.payload.pH);\nvar p = {\"temperature\": tempAsNum,\"specific gravity\": sgAsNum,\"pH\": pHAsNum,\"ups runtime\":msg.payload[\"ups runtime\"],\"sump level\":msg.payload[\"sump level\"]};\nvar newMsg = { payload:p };\nreturn newMsg;\n",
+        "func": "var tempAsNum = Number(msg.payload.temperature);\nvar sgAsNum = Number(msg.payload[\"specific gravity\"]);\nvar pHAsNum = Number(msg.payload.pH);\nvar chiller = Number(global.get(\"chillerState\") || 0);\nvar p = {\"temperature\": tempAsNum,\"specific gravity\": sgAsNum,\"pH\": pHAsNum,\"ups runtime\":msg.payload[\"ups runtime\"],\"sump level\":msg.payload[\"sump level\"],\"chiller\":msg.payload[\"chiller\"]};\nvar newMsg = { payload:p };\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 890,
@@ -7716,7 +7717,9 @@
         "x": 915,
         "y": 340,
         "wires": [
-            []
+            [
+                "ae6e3108.df346"
+            ]
         ]
     },
     {
@@ -10737,7 +10740,9 @@
         "x": 935,
         "y": 420,
         "wires": [
-            []
+            [
+                "6ab0163f.136a8"
+            ]
         ]
     },
     {
@@ -12118,5 +12123,75 @@
         "x": 435,
         "y": 760,
         "wires": []
+    },
+    {
+        "id": "956dd7fa.d2a118",
+        "type": "rpi-explorerhat in",
+        "z": "a6dbe4cf.51fb78",
+        "name": "",
+        "touch": false,
+        "input": true,
+        "analog": false,
+        "x": 163,
+        "y": 927,
+        "wires": [
+            [
+                "5ca39980.b17538"
+            ]
+        ]
+    },
+    {
+        "id": "5ca39980.b17538",
+        "type": "switch",
+        "z": "a6dbe4cf.51fb78",
+        "name": "breakout topics",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "explorerhat/input.1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 339,
+        "y": 927,
+        "wires": [
+            [
+                "7f1ca9ef.30e2a8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7f1ca9ef.30e2a8",
+        "type": "change",
+        "z": "a6dbe4cf.51fb78",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "chillerState",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 562,
+        "y": 891,
+        "wires": [
+            []
+        ]
     }
 ]
