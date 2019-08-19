@@ -56,20 +56,6 @@
         "info": ""
     },
     {
-        "id": "3ca51462.4d812c",
-        "type": "tab",
-        "label": "Systems Control-MQTT",
-        "disabled": true,
-        "info": ""
-    },
-    {
-        "id": "67dc5066.bfbd68",
-        "type": "tab",
-        "label": "Network Management",
-        "disabled": true,
-        "info": ""
-    },
-    {
         "id": "67af22e5.ab600c",
         "type": "ui_base",
         "theme": {
@@ -145,8 +131,7 @@
                 "primary": "indigo",
                 "accents": "blue",
                 "warn": "red",
-                "background": "grey",
-                "palette": "dark"
+                "background": "grey"
             }
         },
         "site": {
@@ -753,1477 +738,6 @@
         ]
     },
     {
-        "id": "a3a5e178.238fc8",
-        "type": "mqtt out",
-        "z": "3ca51462.4d812c",
-        "name": "MQTT Out",
-        "topic": "",
-        "qos": "2",
-        "retain": "",
-        "broker": "15931b5a.9f13ad",
-        "x": 1030,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "dc78119e.6e7348",
-        "type": "link in",
-        "z": "3ca51462.4d812c",
-        "name": "Sump Level Control",
-        "links": [
-            "39f91b23.4eab44"
-        ],
-        "x": 195,
-        "y": 40,
-        "wires": [
-            [
-                "a6f204d1.9e26b8"
-            ]
-        ]
-    },
-    {
-        "id": "a6f204d1.9e26b8",
-        "type": "switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "lt",
-                "v": "5.9",
-                "vt": "num"
-            },
-            {
-                "t": "gt",
-                "v": "5.9",
-                "vt": "num"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 130,
-        "y": 120,
-        "wires": [
-            [
-                "2a497f9f.d388a"
-            ],
-            [
-                "51deb251.2b4e6c"
-            ]
-        ],
-        "outputLabels": [
-            "Low",
-            ""
-        ]
-    },
-    {
-        "id": "dc2739a7.186bc8",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Sump Filler",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 17,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/sump-filler/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 650,
-        "y": 140,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ],
-        "info": "8PHR/aquaDRAMA/device/sump"
-    },
-    {
-        "id": "5d41a595.b3d464",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Calcium",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 3,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/calcium/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 640,
-        "y": 540,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "4d1d1826.f5e99",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Water Changer",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 5,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/water-swap/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 660,
-        "y": 320,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "4f1f7e65.9c77f",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Kalk/Wiper",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 7,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 650,
-        "y": 220,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "2a497f9f.d388a",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "8PHR/aquaDRAMA/device/sump-filler/set",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "1",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 300,
-        "y": 100,
-        "wires": [
-            [
-                "acac91dc.d5cce"
-            ]
-        ]
-    },
-    {
-        "id": "51deb251.2b4e6c",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "8PHR/aquaDRAMA/device/sump-filler/set",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "0",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 300,
-        "y": 140,
-        "wires": [
-            [
-                "dc2739a7.186bc8"
-            ]
-        ]
-    },
-    {
-        "id": "76d899d2.d18ab8",
-        "type": "timerswitch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
-        "offtopic": "8PHR/aquaDRAMA/device/kalk-wiper/set",
-        "onpayload": "1",
-        "offpayload": "0",
-        "disabled": false,
-        "schedules": [
-            {
-                "on_h": "01",
-                "on_m": "01",
-                "on_s": "00",
-                "off_h": "01",
-                "off_m": "11",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "07",
-                "on_m": "01",
-                "on_s": "00",
-                "off_h": "07",
-                "off_m": "11",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "13",
-                "on_m": "01",
-                "on_s": "00",
-                "off_h": "13",
-                "off_m": "11",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "19",
-                "on_m": "01",
-                "on_s": "00",
-                "off_h": "19",
-                "off_m": "11",
-                "off_s": "00",
-                "valid": true
-            }
-        ],
-        "x": 490,
-        "y": 240,
-        "wires": [
-            [
-                "4f1f7e65.9c77f"
-            ]
-        ]
-    },
-    {
-        "id": "582e0a70.1ac114",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Sump Light",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 9,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/sump-light/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 650,
-        "y": 440,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "f78e7ab5.03cd48",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Skimmer",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 11,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/skimmer/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 640,
-        "y": 640,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "dd5442cb.8676f",
-        "type": "timerswitch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/water-swap/set",
-        "offtopic": "8PHR/aquaDRAMA/device/water-swap/set",
-        "onpayload": "1",
-        "offpayload": "0",
-        "disabled": false,
-        "schedules": [
-            {
-                "on_h": "02",
-                "on_m": "15",
-                "on_s": "00",
-                "off_h": "04",
-                "off_m": "15",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "14",
-                "on_m": "15",
-                "on_s": "00",
-                "off_h": "16",
-                "off_m": "15",
-                "off_s": "00",
-                "valid": true
-            }
-        ],
-        "x": 490,
-        "y": 340,
-        "wires": [
-            [
-                "4d1d1826.f5e99"
-            ]
-        ]
-    },
-    {
-        "id": "84bcea38.ea6ff",
-        "type": "timerswitch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/sump-light/set",
-        "offtopic": "8PHR/aquaDRAMA/device/sump-light/set",
-        "onpayload": "1",
-        "offpayload": "0",
-        "disabled": false,
-        "schedules": [
-            {
-                "on_h": "18",
-                "on_m": "15",
-                "on_s": "00",
-                "off_h": "06",
-                "off_m": "15",
-                "off_s": "00",
-                "valid": true
-            }
-        ],
-        "x": 490,
-        "y": 460,
-        "wires": [
-            [
-                "582e0a70.1ac114"
-            ]
-        ]
-    },
-    {
-        "id": "ef10bc25.21c1e8",
-        "type": "timerswitch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/calcium/set",
-        "offtopic": "8PHR/aquaDRAMA/device/calcium/set",
-        "onpayload": "1",
-        "offpayload": "0",
-        "disabled": false,
-        "schedules": [
-            {
-                "on_h": "03",
-                "on_m": "12",
-                "on_s": "00",
-                "off_h": "03",
-                "off_m": "52",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "07",
-                "on_m": "12",
-                "on_s": "00",
-                "off_h": "07",
-                "off_m": "52",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "13",
-                "on_m": "12",
-                "on_s": "00",
-                "off_h": "13",
-                "off_m": "52",
-                "off_s": "00",
-                "valid": true
-            },
-            {
-                "on_h": "19",
-                "on_m": "12",
-                "on_s": "00",
-                "off_h": "19",
-                "off_m": "52",
-                "off_s": "00",
-                "valid": true
-            }
-        ],
-        "x": 490,
-        "y": 560,
-        "wires": [
-            [
-                "5d41a595.b3d464"
-            ]
-        ]
-    },
-    {
-        "id": "8f50ce3f.158f2",
-        "type": "timerswitch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "ontopic": "8PHR/aquaDRAMA/device/skimmer/set",
-        "offtopic": "8PHR/aquaDRAMA/device/skimmer/set",
-        "onpayload": "1",
-        "offpayload": "0",
-        "disabled": false,
-        "schedules": [
-            {
-                "on_h": "04",
-                "on_m": "20",
-                "on_s": "00",
-                "off_h": "20",
-                "off_m": "20",
-                "off_s": "00",
-                "valid": true
-            }
-        ],
-        "x": 490,
-        "y": 660,
-        "wires": [
-            [
-                "f78e7ab5.03cd48"
-            ]
-        ]
-    },
-    {
-        "id": "88fb87f5.684268",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Phos-UV-Pump",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 13,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/heater/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 660,
-        "y": 720,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "c6e73701.677838",
-        "type": "ui_switch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "label": "Chiller-Pump",
-        "tooltip": "",
-        "group": "64f54271.7e742c",
-        "order": 15,
-        "width": "4",
-        "height": "1",
-        "passthru": true,
-        "decouple": "false",
-        "topic": "8PHR/aquaDRAMA/device/chiller/set",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "str",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "str",
-        "officon": "",
-        "offcolor": "",
-        "x": 650,
-        "y": 780,
-        "wires": [
-            [
-                "2712da70.154936"
-            ]
-        ]
-    },
-    {
-        "id": "38bcf80e.5612a",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "sump-filler",
-        "topic": "8PHR/aquaDRAMA/device/sump-filler",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 360,
-        "y": 40,
-        "wires": [
-            [
-                "aee42704.287a2"
-            ]
-        ]
-    },
-    {
-        "id": "f1513895.6a8268",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "water-swap",
-        "topic": "8PHR/aquaDRAMA/device/water-swap",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 350,
-        "y": 300,
-        "wires": [
-            [
-                "fb772a4f.65f57"
-            ]
-        ]
-    },
-    {
-        "id": "60b1a230.c7c9ec",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "sump-light",
-        "topic": "8PHR/aquaDRAMA/device/sump-light",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 360,
-        "y": 420,
-        "wires": [
-            [
-                "d3f2d96b.375fe8"
-            ]
-        ]
-    },
-    {
-        "id": "fb772a4f.65f57",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 300,
-        "wires": [
-            [
-                "4d1d1826.f5e99"
-            ]
-        ]
-    },
-    {
-        "id": "d3f2d96b.375fe8",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 420,
-        "wires": [
-            [
-                "582e0a70.1ac114"
-            ]
-        ]
-    },
-    {
-        "id": "aee42704.287a2",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 40,
-        "wires": [
-            [
-                "dc2739a7.186bc8"
-            ]
-        ]
-    },
-    {
-        "id": "9a0f0b3a.32d158",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "kalk-wiper",
-        "topic": "8PHR/aquaDRAMA/device/kalk-wiper",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 360,
-        "y": 200,
-        "wires": [
-            [
-                "be1a66c3.a93b38"
-            ]
-        ]
-    },
-    {
-        "id": "be1a66c3.a93b38",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 200,
-        "wires": [
-            [
-                "4f1f7e65.9c77f"
-            ]
-        ]
-    },
-    {
-        "id": "159f995d.07e9e7",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "heater",
-        "topic": "8PHR/aquaDRAMA/device/heater",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 290,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "1f3acc4d.0cfe8c",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\n//msg.payload = Boolean(msg.payload);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 720,
-        "wires": [
-            [
-                "88fb87f5.684268"
-            ]
-        ]
-    },
-    {
-        "id": "ac6cd026.95c02",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "calcium",
-        "topic": "8PHR/aquaDRAMA/device/calcium",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 350,
-        "y": 520,
-        "wires": [
-            [
-                "47d500e2.e56f88"
-            ]
-        ]
-    },
-    {
-        "id": "47d500e2.e56f88",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 520,
-        "wires": [
-            [
-                "5d41a595.b3d464"
-            ]
-        ]
-    },
-    {
-        "id": "96860419.26bc38",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "skimmer",
-        "topic": "8PHR/aquaDRAMA/device/skimmer",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 360,
-        "y": 620,
-        "wires": [
-            [
-                "dcb34dc7.a37ad8"
-            ]
-        ]
-    },
-    {
-        "id": "dcb34dc7.a37ad8",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 620,
-        "wires": [
-            [
-                "f78e7ab5.03cd48"
-            ]
-        ]
-    },
-    {
-        "id": "1d228c70.9f9e3c",
-        "type": "mqtt in",
-        "z": "3ca51462.4d812c",
-        "name": "chiller",
-        "topic": "8PHR/aquaDRAMA/device/chiller",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 290,
-        "y": 780,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5c4df208.380f04",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "func": "msg.topic = msg.topic + \"/set\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 510,
-        "y": 780,
-        "wires": [
-            [
-                "c6e73701.677838"
-            ]
-        ]
-    },
-    {
-        "id": "2712da70.154936",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "globals",
-        "rules": [
-            {
-                "t": "set",
-                "p": "device_last_used_state",
-                "pt": "global",
-                "to": "$number(payload)\t",
-                "tot": "jsonata"
-            },
-            {
-                "t": "set",
-                "p": "device_last_used",
-                "pt": "global",
-                "to": "$split(topic, '/')[3]",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 860,
-        "y": 440,
-        "wires": [
-            [
-                "a3a5e178.238fc8",
-                "cf68923d.70108"
-            ]
-        ]
-    },
-    {
-        "id": "d6471492.7bbe28",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "mqtt fix",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1120,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "a0d206fa.c8c95",
-        "type": "http request",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "method": "PUT",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://aquaDRAMA-Outlets.iot.8ph.lan/restapi/mqtt/enabled/",
-        "tls": "",
-        "proxy": "",
-        "authType": "digest",
-        "x": 970,
-        "y": 300,
-        "wires": [
-            [
-                "d6471492.7bbe28",
-                "3659d1a0.3049ee"
-            ]
-        ]
-    },
-    {
-        "id": "938177ca.9e20d",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "headers['X-Requested-With']",
-                "pt": "msg",
-                "to": "XMLHttpRequest",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 300,
-        "wires": [
-            [
-                "a0d206fa.c8c95"
-            ]
-        ]
-    },
-    {
-        "id": "6980dbd8.27fc9c",
-        "type": "trigger",
-        "z": "67dc5066.bfbd68",
-        "op1": "false",
-        "op2": "true",
-        "op1type": "str",
-        "op2type": "str",
-        "duration": "5000",
-        "extend": false,
-        "units": "ms",
-        "reset": "",
-        "bytopic": "all",
-        "name": "",
-        "x": 600,
-        "y": 300,
-        "wires": [
-            [
-                "938177ca.9e20d"
-            ]
-        ]
-    },
-    {
-        "id": "f8fb730c.42f7c8",
-        "type": "link in",
-        "z": "67dc5066.bfbd68",
-        "name": "Fix MQTT",
-        "links": [
-            "a01970c.6bdd39",
-            "5b8aba6.98689c4"
-        ],
-        "x": 635,
-        "y": 360,
-        "wires": [
-            [
-                "6980dbd8.27fc9c",
-                "d46bfca5.aeac"
-            ]
-        ]
-    },
-    {
-        "id": "9fece50b.56614",
-        "type": "mqtt in",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "topic": "$SYS/broker/log/#",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "afa02c9b.d22e3",
-        "x": 130,
-        "y": 300,
-        "wires": [
-            [
-                "2023aa2d.d3c5f6"
-            ]
-        ]
-    },
-    {
-        "id": "2023aa2d.d3c5f6",
-        "type": "switch",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "Socket error on client mosq",
-                "vt": "str"
-            },
-            {
-                "t": "cont",
-                "v": "Socket error on client",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 3,
-        "x": 310,
-        "y": 300,
-        "wires": [
-            [
-                "6980dbd8.27fc9c",
-                "d46bfca5.aeac"
-            ],
-            [
-                "d46bfca5.aeac",
-                "6980dbd8.27fc9c"
-            ],
-            [
-                "ea6ca911.978ce"
-            ]
-        ]
-    },
-    {
-        "id": "1443b81f.333f98",
-        "type": "ui_text",
-        "z": "67dc5066.bfbd68",
-        "group": "64f54271.7e742c",
-        "order": 21,
-        "width": "4",
-        "height": "1",
-        "name": "",
-        "label": "Status",
-        "format": "<font color= {{msg.color}} > {{msg.payload}} </font>",
-        "layout": "row-center",
-        "x": 1070,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "ea6ca911.978ce",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 430,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "a5eb9600.d7135",
-        "type": "http request",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "paytoqs": false,
-        "url": "http://aquaDRAMA-Outlets.iot.8ph.lan/restapi/relay/outlets/{{{payload}}}/physical_state/",
-        "tls": "",
-        "proxy": "",
-        "authType": "digest",
-        "x": 710,
-        "y": 700,
-        "wires": [
-            [
-                "fe8af31c.f3d8e"
-            ]
-        ]
-    },
-    {
-        "id": "7fdbeb2c.cafc04",
-        "type": "syslog-input",
-        "z": "67dc5066.bfbd68",
-        "name": "syslog",
-        "socktype": "udp",
-        "address": "",
-        "port": "514",
-        "topic": "",
-        "x": 70,
-        "y": 560,
-        "wires": [
-            [
-                "35ff3d2e.e52832"
-            ]
-        ]
-    },
-    {
-        "id": "93fb06ea.a62548",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "syslog.relay.state",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 490,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "30613454.6cb4bc",
-        "type": "mqtt in",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "topic": "8PHR/aquaDRAMA/device/outlets-status",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "15931b5a.9f13ad",
-        "x": 180,
-        "y": 500,
-        "wires": [
-            [
-                "93fb06ea.a62548",
-                "6b0bdd19.6d45bc"
-            ]
-        ]
-    },
-    {
-        "id": "6f97d81.67a69a8",
-        "type": "switch",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "relay.state",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 310,
-        "y": 560,
-        "wires": [
-            [
-                "6369501b.738648"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "ab83c494.8fd3f8",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "syslog.else",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 230,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "6369501b.738648",
-        "type": "switch",
-        "z": "67dc5066.bfbd68",
-        "name": "outlet state",
-        "property": "payload.msg",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "cont",
-                "v": "Transient state set to",
-                "vt": "str"
-            },
-            {
-                "t": "else"
-            }
-        ],
-        "checkall": "false",
-        "repair": false,
-        "outputs": 2,
-        "x": 450,
-        "y": 560,
-        "wires": [
-            [
-                "4b8be154.6ad3c"
-            ],
-            [
-                "89194c08.2c06b",
-                "ab83c494.8fd3f8"
-            ]
-        ]
-    },
-    {
-        "id": "502b74f0.fa312c",
-        "type": "function",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "func": "var foo = msg.payload.msg;\nfoo = foo.split(\" \");\nfoo = foo[1];\nfoo = foo.replace(\":\", \"\");\nfoo = foo - 1;\nmsg.payload = foo\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 770,
-        "y": 560,
-        "wires": [
-            [
-                "365fb3e9.78ea74"
-            ]
-        ]
-    },
-    {
-        "id": "fe8af31c.f3d8e",
-        "type": "function",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "func": "if (msg.payload == 'false'){\n    msg.payload = 0;\n} else {\n    msg.payload = 1;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 850,
-        "y": 700,
-        "wires": [
-            [
-                "c673aa6f.9c182"
-            ]
-        ]
-    },
-    {
-        "id": "365fb3e9.78ea74",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "flowvar",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reply_device_last_used",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 560,
-        "y": 700,
-        "wires": [
-            [
-                "a5eb9600.d7135"
-            ]
-        ]
-    },
-    {
-        "id": "c673aa6f.9c182",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "flowvar",
-        "rules": [
-            {
-                "t": "set",
-                "p": "reply_device_last_used_state",
-                "pt": "global",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 560,
-        "y": 760,
-        "wires": [
-            [
-                "b1685df7.b0f9f"
-            ]
-        ]
-    },
-    {
-        "id": "b1685df7.b0f9f",
-        "type": "function",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "func": "var device_last_used_state = Number(global.get('device_last_used_state'));\nvar reply_device_last_used_state = Number(global.get('reply_device_last_used_state'));\nvar device_last_used = global.get('device_last_used');\nvar reply_device_last_used = global.get('reply_device_last_used');\nvar p;\nif (device_last_used_state == reply_device_last_used_state) {\n    p=1;\n} else {\n    p=0;\n}\nvar msg1 = { payload:p };\nreturn msg1;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 690,
-        "y": 760,
-        "wires": [
-            [
-                "c2b72063.048c4"
-            ]
-        ]
-    },
-    {
-        "id": "c2b72063.048c4",
-        "type": "switch",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "0",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 810,
-        "y": 760,
-        "wires": [
-            [
-                "1a84c544.89e93b",
-                "d46bfca5.aeac"
-            ],
-            [
-                "75c3eae.7b77094",
-                "5b8aba6.98689c4"
-            ]
-        ]
-    },
-    {
-        "id": "5b8aba6.98689c4",
-        "type": "link out",
-        "z": "67dc5066.bfbd68",
-        "name": "Fix MQTT",
-        "links": [
-            "57d2d0c.59fb93",
-            "f8fb730c.42f7c8"
-        ],
-        "x": 935,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "1a84c544.89e93b",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "mqttok",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1020,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "75c3eae.7b77094",
-        "type": "debug",
-        "z": "67dc5066.bfbd68",
-        "name": "mqtt BAD",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 1020,
-        "y": 820,
-        "wires": []
-    },
-    {
-        "id": "4b8be154.6ad3c",
-        "type": "delay",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 640,
-        "y": 560,
-        "wires": [
-            [
-                "502b74f0.fa312c"
-            ]
-        ]
-    },
-    {
-        "id": "d46bfca5.aeac",
-        "type": "function",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "func": "var date;\ndate = new Date();\ndate = (date.getFullYear() + '-' + ('00' + (date.getMonth()+1)).slice(-2) + '-' + ('00' + date.getDate()).slice(-2) + ' ' + ('00' + date.getHours()).slice(-2) + ':' + ('00' + date.getMinutes()).slice(-2) + ':' + ('00' + date.getSeconds()).slice(-2));\nvar message;\nif (msg.payload === 1) {\n    msg.color = 'green';\n    message = 'OK';\n} else {\n    msg.color = 'red'; \n    message = 'BAD';\n}\nmsg.payload = date + \" \" + message;\nreturn msg",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 950,
-        "y": 500,
-        "wires": [
-            [
-                "1443b81f.333f98"
-            ]
-        ]
-    },
-    {
-        "id": "acac91dc.d5cce",
-        "type": "trigger",
-        "z": "3ca51462.4d812c",
-        "op1": "",
-        "op2": "0",
-        "op1type": "pay",
-        "op2type": "str",
-        "duration": "10",
-        "extend": false,
-        "units": "s",
-        "reset": "",
-        "bytopic": "all",
-        "name": "",
-        "x": 490,
-        "y": 100,
-        "wires": [
-            [
-                "dc2739a7.186bc8"
-            ]
-        ]
-    },
-    {
         "id": "8e96c89f.b6411",
         "type": "function",
         "z": "bafea1bb.8ac26",
@@ -2715,22 +1229,6 @@
         ]
     },
     {
-        "id": "3659d1a0.3049ee",
-        "type": "ui_toast",
-        "z": "67dc5066.bfbd68",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "",
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "topic": "MQTT ISSUES!",
-        "name": "MQTT ISSUES!",
-        "x": 1140,
-        "y": 300,
-        "wires": []
-    },
-    {
         "id": "96a3270.9d251d8",
         "type": "json",
         "z": "bafea1bb.8ac26",
@@ -2801,33 +1299,6 @@
         "x": 790,
         "y": 260,
         "wires": []
-    },
-    {
-        "id": "6b0bdd19.6d45bc",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 220,
-        "y": 360,
-        "wires": [
-            [
-                "6980dbd8.27fc9c"
-            ]
-        ]
     },
     {
         "id": "b9cf71bd.917378",
@@ -3054,7 +1525,7 @@
         "type": "function",
         "z": "bafea1bb.8ac26",
         "name": "Convert to Number",
-        "func": "var tempAsNum = Number(msg.payload.temperature);\nvar sgAsNum = Number(msg.payload[\"specific gravity\"]);\nvar pHAsNum = Number(msg.payload.pH);\nvar chiller = Number(global.get(\"chillerState\") || 0);\nvar p = {\"temperature\": tempAsNum,\"specific gravity\": sgAsNum,\"pH\": pHAsNum,\"ups runtime\":msg.payload[\"ups runtime\"],\"sump level\":msg.payload[\"sump level\"],\"chiller\":msg.payload[\"chiller\"]};\nvar newMsg = { payload:p };\nreturn newMsg;\n",
+        "func": "var tempAsNum = Number(msg.payload.temperature);\nvar sgAsNum = Number(msg.payload[\"specific gravity\"]);\nvar pHAsNum = Number(msg.payload.pH);\nvar chiller = Number(global.get(\"chillerState\") || 0);\nvar p = {\"temperature\": tempAsNum,\"specific gravity\": sgAsNum,\"pH\": pHAsNum,\"ups runtime\": msg.payload[\"ups runtime\"],\"sump level\": msg.payload[\"sump level\"],\"chiller\": chiller};\nvar newMsg = { payload:p };\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
         "x": 890,
@@ -3180,22 +1651,6 @@
         ]
     },
     {
-        "id": "1928f75c.6e7ea1",
-        "type": "ui_text",
-        "z": "3ca51462.4d812c",
-        "group": "64f54271.7e742c",
-        "order": 1,
-        "width": "8",
-        "height": "1",
-        "name": "",
-        "label": "Device Control Panel",
-        "format": "",
-        "layout": "col-center",
-        "x": 740,
-        "y": 40,
-        "wires": []
-    },
-    {
         "id": "349b01df.0d3ce6",
         "type": "change",
         "z": "2929a40e.ac6b7c",
@@ -3298,7 +1753,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 18,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3330,7 +1785,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 4,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3361,7 +1816,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 6,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3388,11 +1843,11 @@
         "type": "ui_switch",
         "z": "5ef48879.68e9d",
         "name": "",
-        "label": "Kalk/Wiper",
+        "label": "Stirrers",
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 8,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3547,7 +2002,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 10,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3578,7 +2033,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 12,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3721,7 +2176,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 14,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3752,7 +2207,7 @@
         "tooltip": "",
         "group": "64f54271.7e742c",
         "order": 16,
-        "width": "4",
+        "width": "3",
         "height": "1",
         "passthru": true,
         "decouple": "false",
@@ -3802,7 +2257,7 @@
         "z": "5ef48879.68e9d",
         "group": "64f54271.7e742c",
         "order": 2,
-        "width": "8",
+        "width": "9",
         "height": "1",
         "name": "",
         "label": "Device Control Panel",
@@ -6021,37 +4476,6 @@
         ]
     },
     {
-        "id": "d4cb9551.f59a3",
-        "type": "catch",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 200,
-        "y": 1020,
-        "wires": [
-            [
-                "ead41f1d.2fbe6"
-            ]
-        ]
-    },
-    {
-        "id": "266c27c0.481258",
-        "type": "link in",
-        "z": "3ca51462.4d812c",
-        "name": "Log-File",
-        "links": [
-            "39d78675.96ac1a"
-        ],
-        "x": 195,
-        "y": 980,
-        "wires": [
-            [
-                "adf4c18.cda994"
-            ]
-        ]
-    },
-    {
         "id": "39d78675.96ac1a",
         "type": "link out",
         "z": "bafea1bb.8ac26",
@@ -6063,100 +4487,6 @@
         "x": 275,
         "y": 300,
         "wires": []
-    },
-    {
-        "id": "2aafed33.ac3952",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\t   \"ts\": $fromMillis($millis()),\t   \"content\": $string(payload),\t   \"topic\": \t$replace(\t       $replace(\t           $string(topic),\t           '8PHR/aquaDRAMA/device/',\t           ''\t   \t       ),\t       '/set',\t       ''\t   \t   )\t\t}\t\t",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
-        "y": 940,
-        "wires": [
-            [
-                "17e10e6a.991402"
-            ]
-        ]
-    },
-    {
-        "id": "adf4c18.cda994",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "{\t   \"ts\": $fromMillis($millis()),\t   \"content\": $string(payload),\t   \"topic\": \t$replace(\t       $replace(\t           $string(topic),\t           '8PHR/aquaDRAMA/device/',\t           ''\t   \t       ),\t       '/set',\t       ''\t   \t   )\t\t}\t\t",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 320,
-        "y": 980,
-        "wires": [
-            [
-                "17e10e6a.991402"
-            ]
-        ]
-    },
-    {
-        "id": "377e8d2.4afaaf2",
-        "type": "inject",
-        "z": "3ca51462.4d812c",
-        "name": "8PHR/aquaDRAMA/device/chiller",
-        "topic": "8PHR/aquaDRAMA/device/chiller",
-        "payload": "1",
-        "payloadType": "str",
-        "repeat": "600",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "10",
-        "x": 200,
-        "y": 840,
-        "wires": [
-            [
-                "5c4df208.380f04"
-            ]
-        ]
-    },
-    {
-        "id": "ab57313c.9cc1f",
-        "type": "inject",
-        "z": "3ca51462.4d812c",
-        "name": "8PHR/aquaDRAMA/device/heater",
-        "topic": "8PHR/aquaDRAMA/device/heater",
-        "payload": "1",
-        "payloadType": "str",
-        "repeat": "600",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "10",
-        "x": 200,
-        "y": 680,
-        "wires": [
-            [
-                "1f3acc4d.0cfe8c"
-            ]
-        ]
     },
     {
         "id": "10620af5.aad865",
@@ -8296,79 +6626,6 @@
         ]
     },
     {
-        "id": "17e10e6a.991402",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "set timestamp",
-        "func": "function date_format( d, p ) {\n    var pad = function (n, l) {\n        for (n = String(n), l -= n.length; --l >= 0; n = '0'+n);\n        return n;\n    };\n    var tz = function (n, s) {\n        return ((n<0)?'+':'-')+pad(Math.abs(n/60),2)+s+pad(Math.abs(n%60),2);\n    };\n    return p.replace(/([DdFHhKkMmSsyZ])\\1*|'[^']*'|\"[^\"]*\"/g, function (m) {\n        l = m.length;\n        switch (m.charAt(0)) {\n                case 'd': return pad(d.getDate(), l);\n                case 'H': return pad(d.getHours(), l);\n                case 'h': return pad(d.getHours() % 12 || 12, l);\n                case 'K': return pad(d.getHours() % 12, l);\n                case 'k': return pad(d.getHours() || 24, l);\n                case 'm': return pad(d.getMonth() + 1, l );\n                case 'M': return pad(d.getMinutes(), l);\n                case 'S': return pad(d.getMilliseconds(), l);\n                case 's': return pad(d.getSeconds(), l);\n                case 'y': return (l == 2) ? String(d.getFullYear()).substr(2) : pad(d.getFullYear(), l);\n                case 'Z': return tz(d.getTimezoneOffset(), ' ');\n                case \"'\":\n                case '\"': return m.substr(1, l - 2);\n                default: throw new Error('Illegal pattern');\n        }\n    });\n}\n\njs_obj = msg.payload;\n\nvar jstime = date_format(new Date(), 'dd-mm HH:MM:ss');\n//var jstime  = d.format(\"DD-MM-yyyy hh:mm:ss SSS\");\n\njs_obj.timestamp = jstime;\nif (js_obj.content == 1) {\n    js_obj.content = 'on';\n} else if (js_obj.content == 0) {\n    js_obj.content = 'off';\n} else {\n    \n}\n\nmsg.payload = js_obj ;\n\nreturn msg;\n\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 540,
-        "y": 1060,
-        "wires": [
-            [
-                "2004fd38.741e8a"
-            ]
-        ]
-    },
-    {
-        "id": "2004fd38.741e8a",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "handle events",
-        "func": "var msg_obj  = msg.payload ;\nvar arr_msgs = flow.get(\"trace_events\", 'memoryOnly');\n\nif (arr_msgs===undefined ) {\n    // Create an empty array if it does not exist yet\n    arr_msgs = [];\n}\n\narr_msgs.push(msg_obj);\nflow.set(\"trace_events\",arr_msgs, 'memoryOnly');\n\nmsg.payload = flow.get(\"trace_events\", 'memoryOnly');\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 720,
-        "y": 1060,
-        "wires": [
-            [
-                "7fb6c7e2.016c9"
-            ]
-        ]
-    },
-    {
-        "id": "fc310fff.c41af",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "sort",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "(\t   $sort(\t       payload,\t       function($l , $r){$l.timestamp > $r.timestamp }\t   ) \t)",
-                "tot": "jsonata"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 870,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "7fb6c7e2.016c9",
-        "type": "function",
-        "z": "3ca51462.4d812c",
-        "name": "trace buffer",
-        "func": "var arr = msg.payload ;\n\nvar bufferSize = 100;\nif(typeof arr === undefined) {\n    return ;\n} else {\n    var arrSize = arr.length;\n    var minSlice = 0;\n    var maxSlice = arrSize;\n    if (arrSize > bufferSize) {\n        minSlice = arrSize - bufferSize;\n    }\n    msg.payload = arr.slice(minSlice, maxSlice);    \n    msg.topic = 'Event Log';\n    return msg;\n}",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 890,
-        "y": 1060,
-        "wires": [
-            [
-                "1d9d9a2c.0c0d4e"
-            ]
-        ]
-    },
-    {
         "id": "c9119167.6ae0c",
         "type": "change",
         "z": "bafea1bb.8ac26",
@@ -8407,62 +6664,6 @@
         "x": 875,
         "y": 300,
         "wires": []
-    },
-    {
-        "id": "20e32b5.efe4054",
-        "type": "link in",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "links": [
-            "cf68923d.70108"
-        ],
-        "x": 195,
-        "y": 940,
-        "wires": [
-            [
-                "2aafed33.ac3952"
-            ]
-        ]
-    },
-    {
-        "id": "cf68923d.70108",
-        "type": "link out",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "links": [
-            "20e32b5.efe4054",
-            "47de0827.2de34"
-        ],
-        "x": 975,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "9676cd6c.88a74",
-        "type": "link in",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "links": [
-            "582bc561.ed907c",
-            "5ff89551.784424",
-            "d97ba618.7adc6",
-            "3d35265.7eda3da",
-            "c693abfa.9be2e8",
-            "48399b87.73e6f4",
-            "f1eb75d3.8254b8",
-            "43dc9f4f.86a948",
-            "29ded315.053aec",
-            "5340d3f8.9395c4",
-            "16ed730.c10d68d",
-            "7e819538.f753fc"
-        ],
-        "x": 195,
-        "y": 1060,
-        "wires": [
-            [
-                "17e10e6a.991402"
-            ]
-        ]
     },
     {
         "id": "296e9d14.975e7a",
@@ -8681,47 +6882,6 @@
         "wires": []
     },
     {
-        "id": "ead41f1d.2fbe6",
-        "type": "change",
-        "z": "3ca51462.4d812c",
-        "name": "reformat",
-        "rules": [
-            {
-                "t": "set",
-                "p": "content",
-                "pt": "msg",
-                "to": "error.message",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Sys Crtl Error",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "ts",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 340,
-        "y": 1020,
-        "wires": [
-            [
-                "17e10e6a.991402"
-            ]
-        ]
-    },
-    {
         "id": "965baecd.403a68",
         "type": "change",
         "z": "8686c687.130e2",
@@ -8776,143 +6936,6 @@
         "wires": []
     },
     {
-        "id": "89194c08.2c06b",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "reformat",
-        "rules": [
-            {
-                "t": "set",
-                "p": "content",
-                "pt": "msg",
-                "to": "payload.msg",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Network",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "ts",
-                "pt": "msg",
-                "to": "",
-                "tot": "date"
-            },
-            {
-                "t": "delete",
-                "p": "payload",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 820,
-        "wires": [
-            [
-                "f1eb75d3.8254b8",
-                "ab83c494.8fd3f8"
-            ]
-        ]
-    },
-    {
-        "id": "f1eb75d3.8254b8",
-        "type": "link out",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "links": [
-            "9676cd6c.88a74",
-            "e3ef1e7b.b4e66"
-        ],
-        "x": 375,
-        "y": 840,
-        "wires": []
-    },
-    {
-        "id": "660e52a0.f261ac",
-        "type": "catch",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "scope": null,
-        "uncaught": false,
-        "x": 140,
-        "y": 860,
-        "wires": [
-            [
-                "4abf2d83.4c550c"
-            ]
-        ]
-    },
-    {
-        "id": "4abf2d83.4c550c",
-        "type": "change",
-        "z": "67dc5066.bfbd68",
-        "name": "reformat",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "error.message",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "Doser Error!",
-                "tot": "str"
-            },
-            {
-                "t": "set",
-                "p": "highlight",
-                "pt": "msg",
-                "to": "red",
-                "tot": "str"
-            },
-            {
-                "t": "delete",
-                "p": "payload",
-                "pt": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 280,
-        "y": 860,
-        "wires": [
-            [
-                "f1eb75d3.8254b8"
-            ]
-        ]
-    },
-    {
-        "id": "35ff3d2e.e52832",
-        "type": "json",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "property": "payload",
-        "action": "obj",
-        "pretty": false,
-        "x": 190,
-        "y": 560,
-        "wires": [
-            [
-                "6f97d81.67a69a8"
-            ]
-        ]
-    },
-    {
         "id": "d00a922.ca1227",
         "type": "ui_slider",
         "z": "a66b0722.f72648",
@@ -8936,44 +6959,6 @@
         ]
     },
     {
-        "id": "1d9d9a2c.0c0d4e",
-        "type": "template",
-        "z": "3ca51462.4d812c",
-        "name": "html",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "mustache",
-        "template": "<table border=\"1\" style=\"padding: 0px;\">\n    <thead>\n        <tr>\n            <th colspan=\"3\">{{topic}}</th>\n        </tr>\n    </thead>\n    <tr>\n        <th width=\"50px\">Time</th>\n        <th width=\"50px\">Topic</th>\n        <th width=\"50px\">Event</th>\n\n    </tr>\n    {{#payload}}\n        <tr>\n            <td width=\"50px\">{{timestamp}}</td>            \n            <td width=\"50px\">{{topic}}</td>\n            <td width=\"50px\">{{content}}</td>\n        </tr>\n    {{/payload}}\n</table>",
-        "output": "str",
-        "x": 1030,
-        "y": 1060,
-        "wires": [
-            [
-                "35a8a4f1.af1e9c"
-            ]
-        ]
-    },
-    {
-        "id": "35a8a4f1.af1e9c",
-        "type": "ui_template",
-        "z": "3ca51462.4d812c",
-        "group": "86275d52.1eb418",
-        "name": "Scrolling Messages",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "format": "<div ng-bind-html=\"msg.payload\" style=\"font-size: 25%; height: 400px; width: 400px\"></div>",
-        "storeOutMessages": false,
-        "fwdInMessages": false,
-        "templateScope": "local",
-        "x": 990,
-        "y": 1120,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "39f91b23.4eab44",
         "type": "link out",
         "z": "a6dbe4cf.51fb78",
@@ -8985,46 +6970,6 @@
         "x": 875,
         "y": 580,
         "wires": []
-    },
-    {
-        "id": "7ab132cd.ce3594",
-        "type": "inject",
-        "z": "3ca51462.4d812c",
-        "name": "",
-        "topic": "",
-        "payload": "5",
-        "payloadType": "num",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 130,
-        "y": 220,
-        "wires": [
-            [
-                "a6f204d1.9e26b8"
-            ]
-        ]
-    },
-    {
-        "id": "cf213733.7683",
-        "type": "inject",
-        "z": "67dc5066.bfbd68",
-        "name": "",
-        "topic": "",
-        "payload": "Socket error on client",
-        "payloadType": "str",
-        "repeat": "300",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "10",
-        "x": 240,
-        "y": 180,
-        "wires": [
-            [
-                "2023aa2d.d3c5f6"
-            ]
-        ]
     },
     {
         "id": "a5a16167.cc9358",
@@ -12191,7 +10136,67 @@
         "x": 562,
         "y": 891,
         "wires": [
-            []
+            [
+                "937c9022.a75df"
+            ]
         ]
+    },
+    {
+        "id": "b3d70f8d.98ac5",
+        "type": "ui_switch",
+        "z": "5ef48879.68e9d",
+        "name": "",
+        "label": "Chiller",
+        "tooltip": "",
+        "group": "64f54271.7e742c",
+        "order": 18,
+        "width": "3",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "0",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 833,
+        "y": 762,
+        "wires": [
+            []
+        ],
+        "info": "8PHR/aquaDRAMA/device/sump"
+    },
+    {
+        "id": "2f67d5c4.95142a",
+        "type": "link in",
+        "z": "5ef48879.68e9d",
+        "name": "Chiller UI",
+        "links": [
+            "937c9022.a75df"
+        ],
+        "x": 734,
+        "y": 762,
+        "wires": [
+            [
+                "b3d70f8d.98ac5"
+            ]
+        ]
+    },
+    {
+        "id": "937c9022.a75df",
+        "type": "link out",
+        "z": "a6dbe4cf.51fb78",
+        "name": "",
+        "links": [
+            "2f67d5c4.95142a"
+        ],
+        "x": 710,
+        "y": 891,
+        "wires": []
     }
 ]
