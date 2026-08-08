@@ -13,3 +13,7 @@ This is based on examples in the pdfs here and elsewhere online. I've been runni
   * Probe Shield from Atlas
   * Probes and "chips" from Atlas
   * need to find the source of the roller board (ebay...)
+
+## Monitor
+
+Node-RED / uibuilder monitor lives in [`monitor/`](monitor/) (formerly the aquaDRAMA-Monitor repo).
