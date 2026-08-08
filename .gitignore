@@ -1,3 +1,9 @@
 # Prerequisites
 *.h
 .DS_Store
+
+# Node-RED credentials (monitor/)
+monitor/flows_aquaDRAMA-Monitor_cred.json
+monitor/.flows_aquaDRAMA-Monitor_cred.json.backup
+**/flows_*_cred.json
+**/.flows_*_cred.json.backup
