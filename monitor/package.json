@@ -1,0 +1,25 @@
+{
+    "name": "aquaDRAMA-Monitor",
+    "description": "Node-red aquaDRAMA Monitor",
+    "version": "0.0.1",
+    "dependencies": {
+        "node-red-contrib-aggregator": "1.5.0",
+        "node-red-contrib-calc": "1.0.1",
+        "node-red-contrib-looptimer2": "0.0.2",
+        "node-red-contrib-nut-ups": "1.0.2",
+        "node-red-contrib-syslog-input": "1.0.1",
+        "node-red-contrib-thinger": "0.0.4",
+        "node-red-contrib-timerswitch": "1.2.3",
+        "node-red-dashboard": "2.15.5",
+        "node-red-node-smooth": "0.1.0",
+        "node-red-contrib-explorerhat": "0.0.1",
+        "node-red-contrib-simple-gate": "0.2.4",
+        "node-red-contrib-totaliser": "0.0.9"
+    },
+    "node-red": {
+        "settings": {
+            "flowFile": "flows_aquaDRAMA-Monitor.json",
+            "credentialsFile": "flows_aquaDRAMA-Monitor_cred.json"
+        }
+    }
+}
